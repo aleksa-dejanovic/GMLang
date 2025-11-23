@@ -1,3 +1,5 @@
+import graph_definition
+
 File:
     commands*=Command
 ;
@@ -10,52 +12,6 @@ Command[ws='\t \r']:
     ) ('\n'+)
 ;
 
-ConnectionOperator:
-    '->' | '--' | '<-'
-;
-
-Identifier:
-    value=ID
-;
-
-ConnectionCommand:
-    StandardConnectionCommand | InfixConnectionCommand
-;
-
-StandardConnectionCommand:
-     first=Identifier operator=ConnectionOperator second=Identifier
-    (('[' attributes*=Attribute[','] ']') | tag=ID )?
-;
-
-InfixConnectionCommand:
-    first=Identifier ('-' | '<') tag=ID ('-' | '>') second=Identifier
-;
-
-NodeCreationCommand:
-    'node' node=Identifier ('[' attributes*=Attribute[','] ']')?
-;
-
-Attribute:
-    (key=ID | key=STRING) ':' (value=STRING | value=NUMBER)
-;
-
-GraphContextCommand:
-    'graphs' (CreateGraphCommand | UseGraphCommand | ListGraphsCommand | DropGraphCommand)
-;
 
 
-CreateGraphCommand:
-    'create' graph_name=ID
-;
 
-UseGraphCommand:
-    'use' graph_name=ID
-;
-
-ListGraphsCommand:
-    'list'
-;
-
-DropGraphCommand:
-    'drop' graph_name=ID
-;
