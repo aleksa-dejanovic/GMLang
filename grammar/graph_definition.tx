@@ -1,5 +1,9 @@
 import common
 
+GraphDefinitionCommand:
+    ConnectionCommand | NodeCreationCommand | GraphContextCommand
+;
+
 ConnectionOperator:
     '->' | '--' | '<-'
 ;

@@ -6,9 +6,7 @@ File:
 
 Command[ws='\t \r']:
     '\n'* (
-        ConnectionCommand
-        | NodeCreationCommand
-        | GraphContextCommand
+    GraphDefinitionCommand
     ) ('\n'+)
 ;
 
