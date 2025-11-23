@@ -76,7 +76,7 @@ def test_node_creation_with_attributes(metamodel):
                 dic[key] = value
             return dic
 
-        attr_list = cmd.attributes
+        attr_list = cmd.attr_list.attributes if cmd.attr_list else []
         cmd.attributes = list_to_dict(attr_list)
         return cmd
 

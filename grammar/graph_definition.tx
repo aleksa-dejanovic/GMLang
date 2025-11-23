@@ -22,7 +22,11 @@ InfixConnectionCommand:
 ;
 
 NodeCreationCommand:
-    'node' node=Identifier ('[' attributes*=Attribute[','] ']')?
+    'node' node=Identifier attr_list=AttributeList?
+;
+
+AttributeList:
+    '[' attributes*=Attribute[','] ']'
 ;
 
 Attribute:
