@@ -27,11 +27,21 @@ classifiers = [
 requires-python = ">=3.13"
 dependencies = ["textx"]
 
-[project.optional-dependencies]
-test = ["pytest"]
-cli = [
-    "textx[cli]>=4.2.3",
+[dependency-groups]
+dev = [
+    {include-group = "test"},
+    {include-group = "dbg"},
 ]
+test = [
+    "pytest>=9.0.1",
+]
+dbg = [
+    "ipython>=9.7.0",
+    "pudb>=2025.1.3",
+]
+
+[tool.uv]
+default-groups = []
 
 [project.urls]
 Homepage = "TODO"
@@ -70,3 +80,5 @@ select = [
     # isort
     "I",
 ]
+
+
