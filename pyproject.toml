@@ -1,10 +1,72 @@
 [project]
-name = "graph-manipulation-language"
+name = "gmlang"
 version = "0.1.0"
-description = "A TextX language for graph definition and manipulation"
+description = "A DSL for graph definition and manipulation written in TextX"
+authors = [
+    {name = "Aleksa Dejanović", email = "dejanovicaleksa234@gmail.com"},
+]
+maintainers = [
+    {name = "Aleksa Dejanović", email = "dejanovicaleksa234@gmail.com"},
+]
 readme = "README.md"
+license = "Apache-2.0"
+keywords = ["textX", "DSL"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
 requires-python = ">=3.13"
-dependencies = [
-    "pytest>=9.0.1",
-    "textx>=4.2.3",
+dependencies = ["textx"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+cli = [
+    "textx[cli]>=4.2.3",
+]
+
+[project.urls]
+Homepage = "TODO"
+Repository = "https://github.com/aleksa-dejanovic/GMLang"
+
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.8.0,<4"]
+
+[tool.flit.module]
+name = "gmlang"
+
+[tool.flit.sdist]
+exclude = ["**/.*"]
+
+[project.entry-points.textx_languages]
+gmlang = "gmlang:gmlang_language"
+
+[tool.ruff]
+line-length = 90
+indent-width = 4
+
+[tool.ruff.lint]
+# https://docs.astral.sh/ruff/linter/#rule-selection
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
 ]

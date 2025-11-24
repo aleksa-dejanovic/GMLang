@@ -12,4 +12,4 @@ def setup_session():
 @pytest.fixture(scope="session")
 def metamodel():
     """Provides the metamodel for tests"""
-    return textx.metamodel_from_file("grammar/grammar.tx")
+    return textx.metamodel_from_file("gmlang/grammar/grammar.tx")

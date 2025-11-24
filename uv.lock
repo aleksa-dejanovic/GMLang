@@ -12,6 +12,18 @@ wheels = [
 ]
 
 [[package]]
+name = "click"
+version = "8.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3d/fa/656b739db8587d7b5dfa22e22ed02566950fbfbcdc20311993483657a5c0/click-8.3.1.tar.gz", hash = "sha256:12ff4785d337a1bb490bb7e9c2b1ee5da3112e94a8622f26a6c77f5d2fc6842a", size = 295065, upload-time = "2025-11-15T20:45:42.706Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/98/78/01c019cdb5d6498122777c1a43056ebb3ebfeef2076d9d026bfe15583b2b/click-8.3.1-py3-none-any.whl", hash = "sha256:981153a64e25f12d547d3426c367a4857371575ee7ad18df2a6183ab0545b2a6", size = 108274, upload-time = "2025-11-15T20:45:41.139Z" },
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -21,19 +33,28 @@ wheels = [
 ]
 
 [[package]]
-name = "graph-manipulation-language"
+name = "gmlang"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
-    { name = "pytest" },
     { name = "textx" },
+]
+
+[package.optional-dependencies]
+cli = [
+    { name = "textx", extra = ["cli"] },
+]
+test = [
+    { name = "pytest" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "pytest", specifier = ">=9.0.1" },
-    { name = "textx", specifier = ">=4.2.3" },
+    { name = "pytest", marker = "extra == 'test'" },
+    { name = "textx" },
+    { name = "textx", extras = ["cli"], marker = "extra == 'cli'", specifier = ">=4.2.3" },
 ]
+provides-extras = ["test", "cli"]
 
 [[package]]
 name = "iniconfig"
@@ -97,4 +118,9 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a7/23/f8a1f8ea7d5e96a5b89a3d5da823f1b5aaa9e94f1995468a71a9cb146583/textx-4.2.3.tar.gz", hash = "sha256:5c503fe335b24bc113c21cf20bfec9a174680cf95bb651dea8f90c27d305d4c8", size = 2136790, upload-time = "2025-10-09T11:53:49.415Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/5e/f4/e748c6781318aa9fef477c66d4dbd378b28a0e5ea73320cdcf630f755fe5/textx-4.2.3-py3-none-any.whl", hash = "sha256:dc533d34809408fd7152f499fc97609ba7615f61a9e0ebcc76016a0929be5979", size = 67728, upload-time = "2025-10-09T11:53:46.816Z" },
+]
+
+[package.optional-dependencies]
+cli = [
+    { name = "click" },
 ]
