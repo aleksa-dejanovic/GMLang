@@ -9,7 +9,15 @@ def setup_session():
     yield  # Tests run here
 
 
+def get_metamodel():
+    """Helper to get the metamodel for tests"""
+
+    return textx.metamodel_for_language("gmlang")
+
+
 @pytest.fixture(scope="session")
 def metamodel():
     """Provides the metamodel for tests"""
-    return textx.metamodel_from_file("gmlang/grammar/grammar.tx")
+    metamodel = get_metamodel()
+
+    return metamodel

@@ -14,6 +14,11 @@ def test_undirected_connection(metamodel):
     connected = [(cmd.first.value, cmd.second.value) for cmd in model.commands]
     operators = [cmd.operator for cmd in model.commands]
 
+    # Test that there are no attributes
+    assert all(
+        not cmd.attributes for cmd in model.commands
+    ), "Expected no tags in directed connections"
+
     assert len(connected) == 4, "Expected 4 connections in the model"
 
     assert ("One", "Two") in connected, "Connection between 'One' and 'Two' not found"
@@ -51,6 +56,11 @@ def test_directed_connection1(metamodel):
     connected = [(cmd.first.value, cmd.second.value) for cmd in model.commands]
     operators = [cmd.operator for cmd in model.commands]
 
+    # Test that there are no attributes
+    assert all(
+        not cmd.attributes for cmd in model.commands
+    ), "Expected no tags in directed connections"
+
     assert len(connected) == 4, "Expected 4 connections in the model"
 
     assert ("A", "B") in connected, "Connection between 'A' and 'B' not found"
@@ -83,6 +93,11 @@ def test_directed_connection2(metamodel):
     connected = [(cmd.first.value, cmd.second.value) for cmd in model.commands]
     operators = [cmd.operator for cmd in model.commands]
 
+    # Test that there are no attributes
+    assert all(
+        not cmd.attributes for cmd in model.commands
+    ), "Expected no tags in directed connections"
+
     assert len(connected) == 4, "Expected 4 connections in the model"
 
     assert (
@@ -106,25 +121,6 @@ def test_directed_connection2(metamodel):
 
 
 def test_simple_attributed_connection(metamodel):
-    def process_attributes(cmd):
-
-        def list_to_dict(l):
-            dic = {}
-            for elem in l:
-                key = elem.key
-                value = elem.value
-                dic[key] = value
-            return dic
-
-        if not cmd.attr_list:
-            cmd.attributes = {"tag": cmd.tag}
-        else:
-            attr_list = cmd.attr_list.attributes
-            cmd.attributes = list_to_dict(attr_list)
-            del cmd.attr_list
-        return cmd
-
-    metamodel.register_obj_processors({"StandardConnectionCommand": process_attributes})
     try:
         model = metamodel.model_from_str(
             """
@@ -166,12 +162,6 @@ def test_simple_attributed_connection(metamodel):
 
 
 def test_infix_attributed_connection(metamodel):
-    def process_attributes(cmd):
-
-        cmd.attributes = {"tag": cmd.tag}
-        return cmd
-
-    metamodel.register_obj_processors({"InfixConnectionCommand": process_attributes})
     try:
         model = metamodel.model_from_str(
             """
@@ -213,26 +203,6 @@ def test_infix_attributed_connection(metamodel):
 
 
 def test_attributed_connection(metamodel):
-
-    def process_attributes(cmd):
-
-        def list_to_dict(l):
-            dic = {}
-            for elem in l:
-                key = elem.key
-                value = elem.value
-                dic[key] = value
-            return dic
-
-        if not cmd.attr_list:
-            cmd.attributes = {"tag": cmd.tag}
-        else:
-            attr_list = cmd.attr_list.attributes
-            cmd.attributes = list_to_dict(attr_list)
-            del cmd.attr_list
-        return cmd
-
-    metamodel.register_obj_processors({"StandardConnectionCommand": process_attributes})
 
     try:
         model = metamodel.model_from_str(
