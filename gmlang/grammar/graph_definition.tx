@@ -8,17 +8,25 @@ ConnectionOperator:
     '->' | '--' | '<-'
 ;
 
+LConnectionOperator:
+    '<' | '-'
+;
+
+RConnectionOperator:
+    '>' | '-'
+;
+
 ConnectionCommand:
     StandardConnectionCommand | InfixConnectionCommand
 ;
 
 StandardConnectionCommand:
      first=Identifier operator=ConnectionOperator second=Identifier
-    (('[' attributes*=Attribute[','] ']') | tag=ID )?
+    (attr_list=AttributeList | tag=ID )?
 ;
 
 InfixConnectionCommand:
-    first=Identifier ('-' | '<') tag=ID ('-' | '>') second=Identifier
+    first=Identifier LConnectionOperator tag=ID RConnectionOperator second=Identifier
 ;
 
 NodeCreationCommand:

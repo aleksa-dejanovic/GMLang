@@ -116,11 +116,12 @@ def test_simple_attributed_connection(metamodel):
                 dic[key] = value
             return dic
 
-        if not cmd.attributes:
+        if not cmd.attr_list:
             cmd.attributes = {"tag": cmd.tag}
         else:
-            attr_list = cmd.attributes
+            attr_list = cmd.attr_list.attributes
             cmd.attributes = list_to_dict(attr_list)
+            del cmd.attr_list
         return cmd
 
     metamodel.register_obj_processors({"StandardConnectionCommand": process_attributes})
@@ -223,8 +224,12 @@ def test_attributed_connection(metamodel):
                 dic[key] = value
             return dic
 
-        attr_list = cmd.attributes
-        cmd.attributes = list_to_dict(attr_list)
+        if not cmd.attr_list:
+            cmd.attributes = {"tag": cmd.tag}
+        else:
+            attr_list = cmd.attr_list.attributes
+            cmd.attributes = list_to_dict(attr_list)
+            del cmd.attr_list
         return cmd
 
     metamodel.register_obj_processors({"StandardConnectionCommand": process_attributes})
