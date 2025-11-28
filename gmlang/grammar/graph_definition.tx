@@ -1,7 +1,7 @@
 import common
 
 GraphDefinitionCommand:
-    ConnectionCommand | NodeCreationCommand | GraphContextCommand
+    ConnectionCommand | NodeCreationCommand
 ;
 
 ConnectionOperator:
@@ -44,16 +44,4 @@ AttributeList:
 
 Attribute:
     (key=ID | key=STRING) ':' (value=STRING | value=NUMBER)
-;
-
-GraphContextCommand:
-    'graph' subcommand=ID args*=Parameter kwargs*=KWParameter
-;
-
-
-Parameter:
-    STRING | NUMBER | ID
-;
-KWParameter:
-    '-'('-'?) key=ID (value=STRING | value=NUMBER | value=ID)?
 ;

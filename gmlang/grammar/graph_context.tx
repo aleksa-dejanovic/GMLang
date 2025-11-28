@@ -1,0 +1,10 @@
+GraphContextCommand:
+    'graph' subcommand=ID args*=Parameter kwargs*=KWParameter
+;
+
+Parameter:
+    STRING | NUMBER | ID
+;
+KWParameter:
+    '-'('-'?) key=ID (value=STRING | value=NUMBER | value=ID)?
+;
