@@ -20,6 +20,7 @@ def gmlang_language():
         {
             "StandardConnectionCommand": obj_processors.process_attributes,
             "InfixConnectionCommand": obj_processors.process_tag,
+            "GraphContextCommand": obj_processors.process_kwargs,
         }
     )
 
