@@ -28,3 +28,21 @@ def process_kwargs(cmd):
     cmd.flags = set(elem.key for elem in cmd.kwargs if elem.value is None)
     cmd.kwargs = kwargs
     return cmd
+
+
+def process_node_set(cmd):
+    cmd.first = set((node.value for node in cmd.first.nodes))
+    cmd.second = set((node.value for node in cmd.second.nodes))
+    return cmd
+
+
+def process_standard_connection(cmd):
+    process_node_set(cmd)
+    process_attributes(cmd)
+    return cmd
+
+
+def process_infix_connection(cmd):
+    process_node_set(cmd)
+    process_tag(cmd)
+    return cmd

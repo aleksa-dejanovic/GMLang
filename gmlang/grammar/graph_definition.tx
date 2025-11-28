@@ -21,12 +21,17 @@ ConnectionCommand:
 ;
 
 StandardConnectionCommand:
-     first=Identifier operator=ConnectionOperator second=Identifier
+    first=NodeSet operator=ConnectionOperator second=NodeSet
     (attr_list=AttributeList | tag=ID )?
 ;
 
+NodeSet:
+    nodes=Identifier
+    | ('{' nodes+=Identifier[','] '}')
+;
+
 InfixConnectionCommand:
-    first=Identifier LConnectionOperator tag=ID RConnectionOperator second=Identifier
+    first=NodeSet LConnectionOperator tag=ID RConnectionOperator second=NodeSet
 ;
 
 NodeCreationCommand:

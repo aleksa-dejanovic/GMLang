@@ -18,8 +18,8 @@ def gmlang_language():
 
     mm.register_obj_processors(
         {
-            "StandardConnectionCommand": obj_processors.process_attributes,
-            "InfixConnectionCommand": obj_processors.process_tag,
+            "StandardConnectionCommand": obj_processors.process_standard_connection,
+            "InfixConnectionCommand": obj_processors.process_infix_connection,
             "GraphContextCommand": obj_processors.process_kwargs,
         }
     )
