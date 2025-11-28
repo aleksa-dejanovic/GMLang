@@ -57,19 +57,3 @@ Parameter:
 KWParameter:
     '-'('-'?) key=ID (value=STRING | value=NUMBER | value=ID)?
 ;
-
-CreateGraphCommand:
-    'create' graph_name=ID
-;
-
-UseGraphCommand:
-    'use' graph_name=ID
-;
-
-ListGraphsCommand:
-    'list'
-;
-
-DropGraphCommand:
-    'drop' graph_name=ID
-;
