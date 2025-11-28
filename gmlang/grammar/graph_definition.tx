@@ -42,9 +42,23 @@ Attribute:
 ;
 
 GraphContextCommand:
-    'graphs' (CreateGraphCommand | UseGraphCommand | ListGraphsCommand | DropGraphCommand)
+    'graph' subcommand=ID args*=Parameter kwargs*=KWArgs
 ;
 
+Args[ws='\t\r\n']:
+    params*=Parameter[' ']
+;
+
+KWArgs[ws='\t\r\n']:
+    params*=KWParameter[' ']
+;
+
+Parameter:
+    STRING | NUMBER | ID
+;
+KWParameter[ws='\t\r\n']:
+    '-'('-'?) key=ID ' '+ (value=STRING | value=NUMBER | value=ID)
+;
 
 CreateGraphCommand:
     'create' graph_name=ID
