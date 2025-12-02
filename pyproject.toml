@@ -31,6 +31,7 @@ dependencies = ["textx"]
 dev = [
     {include-group = "test"},
     {include-group = "dbg"},
+    "textx[cli]>=4.2.3",
 ]
 test = [
     "pytest>=9.0.1",
