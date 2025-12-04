@@ -108,3 +108,79 @@ def test_attributed(metamodel):
         expected_attributes={"tag": "sibling"},
         expected_operator="<-",
     )
+
+
+def test_mixed_node_sets(metamodel):
+    try:
+        model = metamodel.model_from_str(
+            """
+            node A, B -- {C, D} [tag: "group_connection"]
+            {E, F} -> (node G) [relation: "leader"]
+            H <> {I, J} team
+            """
+        )
+    except Exception as e:
+        assert False, f"Model parsing failed with exception: {e}"
+
+    commands = model.commands
+    assert len(commands) == 3, "Expected 3 commands in the model"
+
+    assert_connection(
+        commands[0],
+        expected_first_nodes={"A", "B"},
+        expected_second_nodes={"C", "D"},
+        expected_attributes={"tag": "group_connection"},
+        expected_operator="--",
+    )
+    assert_connection(
+        commands[1],
+        expected_first_nodes={"E", "F"},
+        expected_second_nodes={"G"},
+        expected_attributes={"relation": "leader"},
+        expected_operator="->",
+    )
+    assert_connection(
+        commands[2],
+        expected_first_nodes={"H"},
+        expected_second_nodes={"I", "J"},
+        expected_attributes={"tag": "team"},
+        expected_operator="<>",
+    )
+
+
+def test_infix_connections(metamodel):
+    try:
+        model = metamodel.model_from_str(
+            """
+            node A < friend > node B
+            {X, Y} - parent - (node Z)
+            P - sibling > {Q, R}
+            """
+        )
+    except Exception as e:
+        assert False, f"Model parsing failed with exception: {e}"
+
+    commands = model.commands
+    assert len(commands) == 3, "Expected 3 commands in the model"
+
+    assert_connection(
+        commands[0],
+        expected_first_nodes={"A"},
+        expected_second_nodes={"B"},
+        expected_attributes={"tag": "friend"},
+        expected_operator="<>",
+    )
+    assert_connection(
+        commands[1],
+        expected_first_nodes={"X", "Y"},
+        expected_second_nodes={"Z"},
+        expected_attributes={"tag": "parent"},
+        expected_operator="--",
+    )
+    assert_connection(
+        commands[2],
+        expected_first_nodes={"P"},
+        expected_second_nodes={"Q", "R"},
+        expected_attributes={"tag": "sibling"},
+        expected_operator="->",
+    )

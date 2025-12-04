@@ -46,6 +46,9 @@ def process_standard_connection(cmd):
 
 
 def process_infix_connection(cmd):
+    cmd.operator = cmd.l_opr + cmd.r_opr
+    del cmd.l_opr
+    del cmd.r_opr
     process_tag(cmd)
 
 

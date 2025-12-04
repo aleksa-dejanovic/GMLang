@@ -6,7 +6,7 @@ GraphDefinitionCommand:
 ;
 
 ConnectionOperator:
-    '->' | '--' | '<-'
+    '->' | '--' | '<-' | '<>'
 ;
 
 LConnectionOperator:
@@ -42,7 +42,7 @@ Nodes:
 ;
 
 InfixConnectionCommand:
-    first=Node LConnectionOperator tag=ID RConnectionOperator second=Node
+    first=Node l_opr=LConnectionOperator tag=ID r_opr=RConnectionOperator second=Node
 ;
 
 NodeCreationCommand:
