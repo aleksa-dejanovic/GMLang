@@ -46,3 +46,11 @@ def process_infix_connection(cmd):
     del cmd.l_opr
     del cmd.r_opr
     process_tag(cmd)
+
+
+def process_standard_connection(cmd):
+    process_attributes(cmd)
+    cmd.first = cmd.scc.first
+    cmd.second = cmd.scc.second
+    cmd.operator = cmd.scc.operator
+    del cmd.scc

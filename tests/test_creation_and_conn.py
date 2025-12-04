@@ -4,6 +4,8 @@ def assert_connection(
     expected_second_nodes,
     expected_attributes,
     expected_operator,
+    expected_first_attrs={},
+    expected_second_attrs={},
 ):
     assert (
         command.first.nodes == expected_first_nodes
@@ -17,6 +19,16 @@ def assert_connection(
     assert (
         command.operator == expected_operator
     ), f"Operator mismatch, got {command.operator}, expected {expected_operator}"
+    assert (
+        getattr(command.first, "attributes", {}) == expected_first_attrs
+    ), f"First nodes attributes mismatch \
+        got {getattr(command.first, "attributes", {})} \
+        expected {expected_first_attrs}"
+    assert (
+        getattr(command.second, "attributes", {}) == expected_second_attrs
+    ), f"Second nodes attributes mismatch \
+        got {getattr(command.second, "attributes", {})} \
+        expected {expected_second_attrs}"
 
 
 def test_simple(metamodel):
@@ -117,13 +129,15 @@ def test_mixed_node_sets(metamodel):
             node A, B -- {C, D} [tag: "group_connection"]
             {E, F} -> (node G) [relation: "leader"]
             H <> {I, J} team
+            (K -- node L) [tag: "extra_connection"]
+            (node M [tag: "isolated_node"] <> node N [tag: "isolated_node_2"]) [tag: "isolated_connection"]
             """
         )
     except Exception as e:
         assert False, f"Model parsing failed with exception: {e}"
 
     commands = model.commands
-    assert len(commands) == 3, "Expected 3 commands in the model"
+    assert len(commands) == 5, "Expected 5 commands in the model"
 
     assert_connection(
         commands[0],
@@ -145,6 +159,22 @@ def test_mixed_node_sets(metamodel):
         expected_second_nodes={"I", "J"},
         expected_attributes={"tag": "team"},
         expected_operator="<>",
+    )
+    assert_connection(
+        commands[3],
+        expected_first_nodes={"K"},
+        expected_second_nodes={"L"},
+        expected_attributes={"tag": "extra_connection"},
+        expected_operator="--",
+    )
+    assert_connection(
+        commands[4],
+        expected_first_nodes={"M"},
+        expected_second_nodes={"N"},
+        expected_attributes={"tag": "isolated_connection"},
+        expected_operator="<>",
+        expected_first_attrs={"tag": "isolated_node"},
+        expected_second_attrs={"tag": "isolated_node_2"},
     )
 
 

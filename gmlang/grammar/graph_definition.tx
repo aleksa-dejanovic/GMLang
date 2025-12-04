@@ -28,8 +28,12 @@ ConnectionCommand:
 ;
 
 StandardConnectionCommand:
+    (scc=SCCNoAttributes (attr_list=AttributeList | tag=ID )?)
+    | ('(' scc=SCCNoAttributes ')' (attr_list=AttributeList | tag=ID )?)
+;
+
+SCCNoAttributes:
     first=Nodes operator=ConnectionOperator second=Nodes
-    (attr_list=AttributeList | tag=ID )?
 ;
 
 NodeSet:
