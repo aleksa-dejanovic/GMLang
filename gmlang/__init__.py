@@ -25,7 +25,7 @@ def gmlang_language():
             "GraphContextCommand": obj_processors.process_kwargs,
             "NodeCreationCommand": obj_processors.process_node_creation,
             "NodeSet": obj_processors.process_node_set,
-            "Nodes": obj_processors.process_nodes,
+            "NodeList": obj_processors.process_nodes,
         }
     )
 

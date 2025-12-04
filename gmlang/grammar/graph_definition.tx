@@ -17,7 +17,7 @@ RConnectionOperator:
     '>' | '-'
 ;
 
-Node:
+Nodes:
     NodeCreationCommand
     | ('(' NodeCreationCommand ')')
     | NodeSet
@@ -28,7 +28,7 @@ ConnectionCommand:
 ;
 
 StandardConnectionCommand:
-    first=Node operator=ConnectionOperator second=Node
+    first=Nodes operator=ConnectionOperator second=Nodes
     (attr_list=AttributeList | tag=ID )?
 ;
 
@@ -37,16 +37,16 @@ NodeSet:
     | ('{' nodes+=Identifier[','] '}')
 ;
 
-Nodes:
+NodeList:
     nodes+=Identifier[',']
 ;
 
 InfixConnectionCommand:
-    first=Node l_opr=LConnectionOperator tag=ID r_opr=RConnectionOperator second=Node
+    first=Nodes l_opr=LConnectionOperator tag=ID r_opr=RConnectionOperator second=Nodes
 ;
 
 NodeCreationCommand:
-    'node' nodes=Nodes attr_list=AttributeList?
+    'node' nodes=NodeList attr_list=AttributeList?
 ;
 
 AttributeList:
