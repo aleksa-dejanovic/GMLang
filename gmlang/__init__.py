@@ -10,7 +10,9 @@ __version__ = "0.1.0.dev"
 def gmlang_language():
     "gmlang language"
     current_dir = os.path.dirname(__file__)
-    mm = metamodel_from_file(os.path.join(current_dir, "grammar", "grammar.tx"))
+    mm = metamodel_from_file(
+        os.path.join(current_dir, "grammar", "grammar.tx"), debug=True
+    )
 
     # Here if necessary register object processors or scope providers
     # http://textx.github.io/textX/stable/metamodel/#object-processors
@@ -21,6 +23,9 @@ def gmlang_language():
             "StandardConnectionCommand": obj_processors.process_standard_connection,
             "InfixConnectionCommand": obj_processors.process_infix_connection,
             "GraphContextCommand": obj_processors.process_kwargs,
+            "NodeCreationCommand": obj_processors.process_node_creation,
+            "NodeSet": obj_processors.process_node_set,
+            "Nodes": obj_processors.process_nodes,
         }
     )
 

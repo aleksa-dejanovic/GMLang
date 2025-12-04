@@ -11,7 +11,7 @@ def test_undirected_connection(metamodel):
     except Exception as e:
         assert False, f"Model parsing failed with exception: {e}"
 
-    connected = [(cmd.first, cmd.second) for cmd in model.commands]
+    connected = [(cmd.first.nodes, cmd.second.nodes) for cmd in model.commands]
     import pprint
 
     pprint.pprint(connected)
@@ -58,7 +58,7 @@ def test_directed_connection1(metamodel):
     except Exception as e:
         assert False, f"Model parsing failed with exception: {e}"
 
-    connected = [(cmd.first, cmd.second) for cmd in model.commands]
+    connected = [(cmd.first.nodes, cmd.second.nodes) for cmd in model.commands]
     operators = [cmd.operator for cmd in model.commands]
 
     # Test that there are no attributes
@@ -95,7 +95,7 @@ def test_directed_connection2(metamodel):
     except Exception as e:
         assert False, f"Model parsing failed with exception: {e}"
 
-    connected = [(cmd.first, cmd.second) for cmd in model.commands]
+    connected = [(cmd.first.nodes, cmd.second.nodes) for cmd in model.commands]
     operators = [cmd.operator for cmd in model.commands]
 
     # Test that there are no attributes
@@ -139,8 +139,8 @@ def test_simple_attributed_connection(metamodel):
 
     connections = [
         (
-            cmd.first,
-            cmd.second,
+            cmd.first.nodes,
+            cmd.second.nodes,
             cmd.attributes,
         )
         for cmd in model.commands
@@ -183,8 +183,8 @@ def test_infix_attributed_connection(metamodel):
 
     connections = [
         (
-            cmd.first,
-            cmd.second,
+            cmd.first.nodes,
+            cmd.second.nodes,
             cmd.attributes,
         )
         for cmd in model.commands
@@ -229,8 +229,8 @@ def test_attributed_connection(metamodel):
 
     connections = [
         (
-            cmd.first,
-            cmd.second,
+            cmd.first.nodes,
+            cmd.second.nodes,
             cmd.attributes,
         )
         for cmd in model.commands
@@ -280,8 +280,8 @@ def test_node_sets(metamodel):
 
     connections = [
         (
-            cmd.first,
-            cmd.second,
+            cmd.first.nodes,
+            cmd.second.nodes,
         )
         for cmd in model.commands
     ]

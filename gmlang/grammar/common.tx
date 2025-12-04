@@ -1,3 +1,7 @@
 Identifier:
-    value=ID
+    !Keyword value=ID
+;
+
+Keyword:
+    'graph' | 'node'
 ;

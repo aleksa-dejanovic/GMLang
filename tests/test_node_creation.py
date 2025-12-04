@@ -11,7 +11,7 @@ def test_simple_node_creation(metamodel):
     except Exception as e:
         assert False, f"Model parsing failed with exception: {e}"
 
-    nodes = [cmd.node.value for cmd in model.commands]
+    nodes = [node for cmd in model.commands for node in cmd.nodes]
     print(nodes)
 
     assert len(nodes) == 4, "Expected 4 nodes in the model"
@@ -47,7 +47,7 @@ def test_creation_with_edge_case_names(metamodel):
     except Exception as e:
         assert False, f"Model parsing failed with exception: {e}"
 
-    nodes = [cmd.node.value for cmd in model.commands]
+    nodes = [node for cmd in model.commands for node in cmd.nodes]
     print(nodes)
 
     assert len(nodes) == 4, "Expected 4 nodes in the model"
@@ -65,22 +65,6 @@ def test_creation_with_edge_case_names(metamodel):
 
 
 def test_node_creation_with_attributes(metamodel):
-
-    def process_attributes(cmd):
-
-        def list_to_dict(l):
-            dic = {}
-            for elem in l:
-                key = elem.key
-                value = elem.value
-                dic[key] = value
-            return dic
-
-        attr_list = cmd.attr_list.attributes if cmd.attr_list else []
-        cmd.attributes = list_to_dict(attr_list)
-        return cmd
-
-    metamodel.register_obj_processors({"NodeCreationCommand": process_attributes})
     try:
         model = metamodel.model_from_str(
             """
@@ -94,7 +78,7 @@ def test_node_creation_with_attributes(metamodel):
         )
     except Exception as e:
         assert False, f"Model parsing failed with exception: {e}"
-    nodes = {cmd.node.value: cmd.attributes for cmd in model.commands}
+    nodes = {node: cmd.attributes for cmd in model.commands for node in cmd.nodes}
     assert len(nodes) == 6, "Expected 6 nodes in the model"
     assert "NodeA" in nodes, "Node 'NodeA' not found"
     assert nodes["NodeA"]["size"] == 10, "NodeA size attribute incorrect"

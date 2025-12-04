@@ -1,7 +1,8 @@
 import common
 
 GraphDefinitionCommand:
-    ConnectionCommand | NodeCreationCommand
+    ConnectionCommand
+    | NodeCreationCommand
 ;
 
 ConnectionOperator:
@@ -16,12 +17,18 @@ RConnectionOperator:
     '>' | '-'
 ;
 
+Node:
+    NodeCreationCommand
+    | ('(' NodeCreationCommand ')')
+    | NodeSet
+;
+
 ConnectionCommand:
     StandardConnectionCommand | InfixConnectionCommand
 ;
 
 StandardConnectionCommand:
-    first=NodeSet operator=ConnectionOperator second=NodeSet
+    first=Node operator=ConnectionOperator second=Node
     (attr_list=AttributeList | tag=ID )?
 ;
 
@@ -30,12 +37,16 @@ NodeSet:
     | ('{' nodes+=Identifier[','] '}')
 ;
 
+Nodes:
+    nodes+=Identifier[',']
+;
+
 InfixConnectionCommand:
-    first=NodeSet LConnectionOperator tag=ID RConnectionOperator second=NodeSet
+    first=Node LConnectionOperator tag=ID RConnectionOperator second=Node
 ;
 
 NodeCreationCommand:
-    'node' node=Identifier attr_list=AttributeList?
+    'node' nodes=Nodes attr_list=AttributeList?
 ;
 
 AttributeList:
