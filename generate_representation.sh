@@ -2,8 +2,8 @@
 
 # This script generates a representation of the current language structure
 
-textx generate --target dot ./gmlang/grammar/grammar.tx -o .
+textx generate --target PlantUML ./gmlang/grammar/grammar.tx -o .
 
-dot -Tpng grammar.dot -o grammar.png
+plantuml grammar.pu
 
-rm grammar.dot
+rm grammar.pu
