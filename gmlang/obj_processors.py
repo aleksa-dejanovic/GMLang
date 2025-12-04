@@ -32,11 +32,11 @@ def process_kwargs(cmd):
 
 
 def process_node_set(node_set):
-    node_set.nodes = set((node.value for node in node_set.nodes))
+    node_set.nodes = set((node for node in node_set.nodes))
 
 
 def process_nodes(cmd):
-    nodes = set((node.value for node in cmd.nodes))
+    nodes = set((node for node in cmd.nodes))
     del cmd.nodes
     return nodes
 
