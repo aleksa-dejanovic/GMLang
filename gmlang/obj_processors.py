@@ -41,16 +41,8 @@ def process_nodes(cmd):
     return nodes
 
 
-def process_standard_connection(cmd):
-    process_attributes(cmd)
-
-
 def process_infix_connection(cmd):
     cmd.operator = cmd.l_opr + cmd.r_opr
     del cmd.l_opr
     del cmd.r_opr
     process_tag(cmd)
-
-
-def process_node_creation(cmd):
-    process_attributes(cmd)

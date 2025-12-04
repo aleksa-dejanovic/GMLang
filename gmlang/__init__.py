@@ -20,10 +20,10 @@ def gmlang_language():
 
     mm.register_obj_processors(
         {
-            "StandardConnectionCommand": obj_processors.process_standard_connection,
+            "StandardConnectionCommand": obj_processors.process_attributes,
             "InfixConnectionCommand": obj_processors.process_infix_connection,
             "GraphContextCommand": obj_processors.process_kwargs,
-            "NodeCreationCommand": obj_processors.process_node_creation,
+            "NodeCreationCommand": obj_processors.process_attributes,
             "NodeSet": obj_processors.process_node_set,
             "NodeList": obj_processors.process_nodes,
         }
