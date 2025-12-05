@@ -24,6 +24,7 @@ def gmlang_language():
             "NodeCreationCommand": obj_processors.process_attributes,
             "NodeSet": obj_processors.process_node_set,
             "NodeList": obj_processors.process_nodes,
+            "HyperEdgeChain": obj_processors.process_hyperedge_chain,
         }
     )
 

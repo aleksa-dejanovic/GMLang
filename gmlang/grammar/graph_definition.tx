@@ -17,6 +17,10 @@ RConnectionOperator:
     '>' | '-'
 ;
 
+HyperEdgeOperator:
+    '*--' | '*->' | '*<-' | '<*>'
+;
+
 Nodes:
     NodeCreationCommand
     | ('(' NodeCreationCommand ')')
@@ -24,7 +28,9 @@ Nodes:
 ;
 
 ConnectionCommand:
-    StandardConnectionCommand | InfixConnectionCommand
+    StandardConnectionCommand
+    | InfixConnectionCommand
+    | HyperEdgeChain
 ;
 
 StandardConnectionCommand:
@@ -60,3 +66,12 @@ AttributeList:
 Attribute:
     (key=ID | key=STRING) ':' (value=STRING | value=NUMBER)
 ;
+
+HyperEdgeChain:
+    edges+=HyperEdge attr_list=AttributeList?
+;
+
+HyperEdge:
+    operator=HyperEdgeOperator inner=Nodes
+;
+

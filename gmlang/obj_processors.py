@@ -1,3 +1,6 @@
+from textx import TextXSemanticError
+
+
 def list_to_dict(l):
     return {elem.key: elem.value for elem in l}
 
@@ -54,3 +57,26 @@ def process_standard_connection(cmd):
     cmd.second = cmd.scc.second
     cmd.operator = cmd.scc.operator
     del cmd.scc
+
+
+def process_hyperedge_chain(cmd):
+    process_attributes(cmd)
+    operators = {"*--": "undirected", "*->": "target", "*<-": "source"}
+    cmd.contents = {
+        op: {
+            node
+            for edge in cmd.edges
+            for node in edge.inner.nodes
+            if operators.get(edge.operator) == op
+            or (edge.operator == "<*>" and op in ("source", "target"))
+        }
+        for op in operators.values()
+    }
+    del cmd.edges
+
+    if cmd.contents["undirected"] and (
+        cmd.contents["target"] or cmd.contents["source"]
+    ):
+        raise TextXSemanticError(
+            "Hyperedge cannot have both source nodes and target/undirected nodes."
+        )
