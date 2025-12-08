@@ -35,6 +35,7 @@ dev = [
 ]
 test = [
     "pytest>=9.0.1",
+    "ruff>=0.14.8",
 ]
 dbg = [
     "ipython>=9.7.0",

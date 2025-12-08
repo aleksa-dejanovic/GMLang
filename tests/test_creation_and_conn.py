@@ -4,15 +4,25 @@ def assert_connection(
     expected_second_nodes,
     expected_attributes,
     expected_operator,
-    expected_first_attrs={},
-    expected_second_attrs={},
+    expected_first_attrs=None,
+    expected_second_attrs=None,
 ):
+    if expected_second_attrs is None:
+        expected_second_attrs = {}
+    if expected_first_attrs is None:
+        expected_first_attrs = {}
     assert (
         command.first.nodes == expected_first_nodes
-    ), f"First nodes mismatch, got {command.first.nodes}, expected {expected_first_nodes}"
+    ), (
+        f"First nodes mismatch, got {command.first.nodes}, "
+        f"expected {expected_first_nodes}"
+    )
     assert (
         command.second.nodes == expected_second_nodes
-    ), f"Second nodes mismatch, got {command.second.nodes}, expected {expected_second_nodes}"
+    ), (
+        f"Second nodes mismatch, got {command.second.nodes}, "
+        f"expected {expected_second_nodes}"
+    )
     assert (
         command.attributes == expected_attributes
     ), f"Attributes mismatch, got {command.attributes}, expected {expected_attributes}"
@@ -41,7 +51,7 @@ def test_simple(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     commands = model.commands
     assert len(commands) == 3, "Expected 3 commands in the model"
@@ -94,7 +104,7 @@ def test_attributed(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     commands = model.commands
     assert len(commands) == 3, "Expected 3 commands in the model"
@@ -134,7 +144,7 @@ def test_mixed_node_sets(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     commands = model.commands
     assert len(commands) == 5, "Expected 5 commands in the model"
@@ -188,7 +198,7 @@ def test_infix_connections(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     commands = model.commands
     assert len(commands) == 3, "Expected 3 commands in the model"

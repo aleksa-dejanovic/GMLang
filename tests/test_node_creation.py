@@ -9,7 +9,7 @@ def test_simple_node_creation(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     nodes = [node for cmd in model.commands for node in cmd.nodes]
     print(nodes)
@@ -26,10 +26,10 @@ def test_creation_with_invalid_names(metamodel):
     invalid_names = ["1Node", "Node-Name", "Node Name", "Node@123"]
     for name in invalid_names:
         try:
-            model = metamodel.model_from_str(f"node {name}")
-            assert (
-                False
-            ), f"Model parsing should have failed for invalid node name: {name}"
+            metamodel.model_from_str(f"node {name}")
+            raise AssertionError(
+                    f"Model parsing should have failed for invalid node name: {name}"
+                )
         except Exception:
             pass  # Expected exception for invalid names
 
@@ -45,7 +45,7 @@ def test_creation_with_edge_case_names(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     nodes = [node for cmd in model.commands for node in cmd.nodes]
     print(nodes)
@@ -77,7 +77,7 @@ def test_node_creation_with_attributes(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
     nodes = {node: cmd.attributes for cmd in model.commands for node in cmd.nodes}
     assert len(nodes) == 6, "Expected 6 nodes in the model"
     assert "NodeA" in nodes, "Node 'NodeA' not found"

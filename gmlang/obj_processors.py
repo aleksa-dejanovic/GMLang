@@ -1,13 +1,11 @@
 from textx import TextXSemanticError
 
 
-def list_to_dict(l):
-    return {elem.key: elem.value for elem in l}
+def list_to_dict(items):
+    return {elem.key: elem.value for elem in items}
 
 
 def process_attributes(cmd):
-    import pdb
-
     if not cmd.attr_list:
         try:
             if not cmd.tag:
@@ -35,11 +33,11 @@ def process_kwargs(cmd):
 
 
 def process_node_set(node_set):
-    node_set.nodes = set((node for node in node_set.nodes))
+    node_set.nodes = set(node for node in node_set.nodes)
 
 
 def process_nodes(cmd):
-    nodes = set((node for node in cmd.nodes))
+    nodes = set(node for node in cmd.nodes)
     del cmd.nodes
     return nodes
 
