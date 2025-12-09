@@ -1,12 +1,20 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 
+import json
+
 
 @dataclass
 class Node:
     id: str
     edges: list[Edge] = field(default_factory=list)
     attributes: dict[str, str] = field(default_factory=dict)
+
+    def __repr__(self):
+        return f"Node({self.id}, attributes={self.attributes})"
+
+    def __eq__(self, other: Node):
+        return self.id == other.id and self.attributes == other.attributes
 
 
 @dataclass
@@ -29,6 +37,52 @@ class Edge:
 @dataclass
 class Graph:
     nodes: dict[str, Node] = field(default_factory=dict)
+
+    def to_json(self):
+        return json.dumps(
+            {
+                "nodes": {
+                    nid: {
+                        "attributes": dict(n.attributes),
+                        "edges": [
+                            {
+                                "source": [s.id for s in e.source],
+                                "target": [t.id for t in e.target],
+                                "attributes": dict(e.attributes),
+                                "directed": e.directed,
+                            }
+                            for e in n.edges
+                        ],
+                    }
+                    for nid, n in self.nodes.items()
+                }
+            },
+            indent=2,
+        )
+
+    @staticmethod
+    def from_json(data):
+        obj = json.loads(data)
+        g = Graph()
+        for nid, nd in obj["nodes"].items():
+            g.nodes[nid] = Node(id=nid, attributes=dict(nd["attributes"]))
+        for nid, nd in obj["nodes"].items():
+            n = g.nodes[nid]
+            for e in nd["edges"]:
+                edge = Edge(
+                    source=[g.nodes[x] for x in e["source"]],
+                    target=[g.nodes[x] for x in e["target"]],
+                    attributes=dict(e["attributes"]),
+                    directed=e["directed"],
+                )
+                n.edges.append(edge)
+        return g
+
+    def __repr__(self):
+        return (
+            f"Graph(nodes:\n{"\n".join(str(node) for node in self.get_nodes())}\n"
+            f"edges:\n{"\n".join(str(edge) for edge in self.get_edges())}\n)"
+        )
 
     def add_node(self, node: Node) -> None:
         self.nodes[node.id] = node
