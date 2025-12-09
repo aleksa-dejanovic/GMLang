@@ -1,6 +1,6 @@
 from textx.exceptions import TextXSemanticError
 
-from gmlang.graph.graph import Node, Edge, Graph
+from gmlang.graph.graph import Node, Edge, Graph, Hyperedge
 
 
 class BasicInterpreter:
@@ -50,8 +50,8 @@ class BasicInterpreter:
             for node2 in target_nodes:
                 edges.append(
                     Edge(
-                        source=[node1],
-                        target=[node2],
+                        source=node1,
+                        target=node2,
                         attributes=attributes,
                         directed=directed,
                     )
@@ -134,3 +134,15 @@ class BasicInterpreter:
         )
         for edge in edges:
             self._graph.add_edge(edge)
+
+    def _interpret_HyperEdgeChain(self, command) -> None:
+        if command.contents["undirected"]:
+            source = [
+                self.get_variable(node) for node in command.contents["undirected"]
+            ]
+            target = []
+        else:
+            source = [self.get_variable(node) for node in command.contents["source"]]
+            target = [self.get_variable(node) for node in command.contents["target"]]
+        he = Hyperedge(source, target, command.attributes)
+        self._graph.add_hyperedge(he)

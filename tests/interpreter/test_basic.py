@@ -1,11 +1,9 @@
-import sys, os
+import os, sys, json
 
 from gmlang.interpreter.basic import BasicInterpreter
 
 from gmlang.graph.graph import Graph
-
-
-import os
+from gmlang.graph.json_encoder import GraphJSONDecoder, GraphJSONEncoder
 
 
 def get_output_path(request) -> str:
@@ -31,13 +29,13 @@ def read_output(request) -> str:
 
 def check_graph(graph, request, overwrite):
     if overwrite:
-        graph_json = graph.to_json()
+        graph_json = json.dumps(graph, cls=GraphJSONEncoder, indent=2)
         generate_output(request, graph_json)
     else:
         expected = read_output(request)
         if expected == "":
             raise Exception("Output file empty")
-        exp_graph = Graph.from_json(expected)
+        exp_graph = json.loads(expected, cls=GraphJSONDecoder)
         assert graph == exp_graph, (
             f"Graph is not as expected\n"
             f"GOT:\n{repr(graph)}\n"
@@ -79,6 +77,19 @@ def test_infix_connections(request, metamodel, overwrite):
     node A <sister> node B
     node C -friend- node D
     node E, F -colleague> node G, H
+    """
+    model = metamodel.model_from_str(text)
+    interpreter = BasicInterpreter()
+    interpreter.interpret(model.commands)
+    graph = interpreter._graph
+    check_graph(graph, request, overwrite)
+
+
+def test_hyperedge_connections(request, metamodel, overwrite):
+    text = """
+    node A, B, C, D, E
+    *-- {A, B, C}
+    *<- {A} *-> {D, E} *<- {B} *<- {C}
     """
     model = metamodel.model_from_str(text)
     interpreter = BasicInterpreter()

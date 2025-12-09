@@ -4,32 +4,23 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "X"
-          ],
-          "target": [
-            "Y"
-          ],
+          "type": "edge",
+          "source": "X",
+          "target": "Y",
           "attributes": {},
           "directed": false
         },
         {
-          "source": [
-            "X"
-          ],
-          "target": [
-            "Y"
-          ],
+          "type": "edge",
+          "source": "X",
+          "target": "Y",
           "attributes": {},
           "directed": true
         },
         {
-          "source": [
-            "Y"
-          ],
-          "target": [
-            "X"
-          ],
+          "type": "edge",
+          "source": "Y",
+          "target": "X",
           "attributes": {},
           "directed": true
         }
@@ -39,47 +30,23 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "X"
-          ],
-          "target": [
-            "Y"
-          ],
+          "type": "edge",
+          "source": "X",
+          "target": "Y",
           "attributes": {},
           "directed": false
         },
         {
-          "source": [
-            "X"
-          ],
-          "target": [
-            "Y"
-          ],
+          "type": "edge",
+          "source": "X",
+          "target": "Y",
           "attributes": {},
           "directed": true
         },
         {
-          "source": [
-            "Y"
-          ],
-          "target": [
-            "X"
-          ],
-          "attributes": {},
-          "directed": true
-        }
-      ]
-    },
-    "M": {
-      "attributes": {},
-      "edges": [
-        {
-          "source": [
-            "M"
-          ],
-          "target": [
-            "P"
-          ],
+          "type": "edge",
+          "source": "Y",
+          "target": "X",
           "attributes": {},
           "directed": true
         }
@@ -89,12 +56,21 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "O"
-          ],
-          "target": [
-            "P"
-          ],
+          "type": "edge",
+          "source": "O",
+          "target": "P",
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "M": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "edge",
+          "source": "M",
+          "target": "P",
           "attributes": {},
           "directed": true
         }
@@ -104,12 +80,9 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "N"
-          ],
-          "target": [
-            "P"
-          ],
+          "type": "edge",
+          "source": "N",
+          "target": "P",
           "attributes": {},
           "directed": true
         }
@@ -119,32 +92,23 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "M"
-          ],
-          "target": [
-            "P"
-          ],
+          "type": "edge",
+          "source": "O",
+          "target": "P",
           "attributes": {},
           "directed": true
         },
         {
-          "source": [
-            "O"
-          ],
-          "target": [
-            "P"
-          ],
+          "type": "edge",
+          "source": "M",
+          "target": "P",
           "attributes": {},
           "directed": true
         },
         {
-          "source": [
-            "N"
-          ],
-          "target": [
-            "P"
-          ],
+          "type": "edge",
+          "source": "N",
+          "target": "P",
           "attributes": {},
           "directed": true
         }

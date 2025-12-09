@@ -4,12 +4,9 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "A"
-          ],
-          "target": [
-            "B"
-          ],
+          "type": "edge",
+          "source": "A",
+          "target": "B",
           "attributes": {
             "tag": "sister"
           },
@@ -21,12 +18,9 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "A"
-          ],
-          "target": [
-            "B"
-          ],
+          "type": "edge",
+          "source": "A",
+          "target": "B",
           "attributes": {
             "tag": "sister"
           },
@@ -38,12 +32,9 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "C"
-          ],
-          "target": [
-            "D"
-          ],
+          "type": "edge",
+          "source": "C",
+          "target": "D",
           "attributes": {
             "tag": "friend"
           },
@@ -55,12 +46,9 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "C"
-          ],
-          "target": [
-            "D"
-          ],
+          "type": "edge",
+          "source": "C",
+          "target": "D",
           "attributes": {
             "tag": "friend"
           },
@@ -68,57 +56,22 @@
         }
       ]
     },
-    "E": {
-      "attributes": {},
-      "edges": [
-        {
-          "source": [
-            "E"
-          ],
-          "target": [
-            "H"
-          ],
-          "attributes": {
-            "tag": "colleague"
-          },
-          "directed": true
-        },
-        {
-          "source": [
-            "E"
-          ],
-          "target": [
-            "G"
-          ],
-          "attributes": {
-            "tag": "colleague"
-          },
-          "directed": true
-        }
-      ]
-    },
     "F": {
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "F"
-          ],
-          "target": [
-            "H"
-          ],
+          "type": "edge",
+          "source": "F",
+          "target": "G",
           "attributes": {
             "tag": "colleague"
           },
           "directed": true
         },
         {
-          "source": [
-            "F"
-          ],
-          "target": [
-            "G"
-          ],
+          "type": "edge",
+          "source": "F",
+          "target": "H",
           "attributes": {
             "tag": "colleague"
           },
@@ -126,28 +79,22 @@
         }
       ]
     },
-    "H": {
+    "E": {
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "E"
-          ],
-          "target": [
-            "H"
-          ],
+          "type": "edge",
+          "source": "E",
+          "target": "G",
           "attributes": {
             "tag": "colleague"
           },
           "directed": true
         },
         {
-          "source": [
-            "F"
-          ],
-          "target": [
-            "H"
-          ],
+          "type": "edge",
+          "source": "E",
+          "target": "H",
           "attributes": {
             "tag": "colleague"
           },
@@ -159,24 +106,41 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "E"
-          ],
-          "target": [
-            "G"
-          ],
+          "type": "edge",
+          "source": "F",
+          "target": "G",
           "attributes": {
             "tag": "colleague"
           },
           "directed": true
         },
         {
-          "source": [
-            "F"
-          ],
-          "target": [
-            "G"
-          ],
+          "type": "edge",
+          "source": "E",
+          "target": "G",
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        }
+      ]
+    },
+    "H": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "edge",
+          "source": "F",
+          "target": "H",
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        },
+        {
+          "type": "edge",
+          "source": "E",
+          "target": "H",
           "attributes": {
             "tag": "colleague"
           },

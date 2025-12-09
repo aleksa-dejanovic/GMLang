@@ -1,5 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
+from typing import Iterable
 
 import json
 
@@ -19,64 +20,36 @@ class Node:
 
 @dataclass
 class Edge:
-    source: list[Node] = field(default_factory=list)
-    target: list[Node] = field(default_factory=list)
+    source: Node
+    target: Node
     attributes: dict[str, str] = field(default_factory=dict)
     directed: bool = False
 
-    def ends(self) -> list[Node]:
-        return self.source + self.target
+    def ends(self) -> tuple[Node]:
+        return (self.source, self.target)
 
     def __repr__(self):
         dir_symbol = "->" if self.directed else "--"
-        source_ids = ",".join(node.id for node in self.source)
-        target_ids = ",".join(node.id for node in self.target)
-        return f"Edge({source_ids} {dir_symbol} {target_ids}, attributes={self.attributes})"
+        return f"Edge({self.source.id} {dir_symbol} {self.target.id}, attributes={self.attributes})"
+
+
+@dataclass
+class Hyperedge:
+    source: Iterable[Node]
+    target: Iterable[Node]
+    attributes: dict[str, str] = field(default_factory=dict)
+
+    @property
+    def is_directed(self):
+        return self.target == []
+
+    def ends(self) -> set[Node]:
+        return self.source + self.target
 
 
 @dataclass
 class Graph:
     nodes: dict[str, Node] = field(default_factory=dict)
-
-    def to_json(self):
-        return json.dumps(
-            {
-                "nodes": {
-                    nid: {
-                        "attributes": dict(n.attributes),
-                        "edges": [
-                            {
-                                "source": [s.id for s in e.source],
-                                "target": [t.id for t in e.target],
-                                "attributes": dict(e.attributes),
-                                "directed": e.directed,
-                            }
-                            for e in n.edges
-                        ],
-                    }
-                    for nid, n in self.nodes.items()
-                }
-            },
-            indent=2,
-        )
-
-    @staticmethod
-    def from_json(data):
-        obj = json.loads(data)
-        g = Graph()
-        for nid, nd in obj["nodes"].items():
-            g.nodes[nid] = Node(id=nid, attributes=dict(nd["attributes"]))
-        for nid, nd in obj["nodes"].items():
-            n = g.nodes[nid]
-            for e in nd["edges"]:
-                edge = Edge(
-                    source=[g.nodes[x] for x in e["source"]],
-                    target=[g.nodes[x] for x in e["target"]],
-                    attributes=dict(e["attributes"]),
-                    directed=e["directed"],
-                )
-                n.edges.append(edge)
-        return g
 
     def __repr__(self):
         return (
@@ -105,6 +78,18 @@ class Graph:
         return False
 
     def remove_edge(self, edge: Edge) -> bool:
+        removed = False
+        for node in edge.ends():
+            if edge in node.edges:
+                node.edges.remove(edge)
+                removed = True
+        return removed
+
+    def add_hyperedge(self, edge: Hyperedge) -> None:
+        for node in edge.ends():
+            node.edges.append(edge)
+
+    def remove_hyperedge(self, edge: Hyperedge) -> bool:
         removed = False
         for node in edge.ends():
             if edge in node.edges:

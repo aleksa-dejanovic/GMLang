@@ -4,12 +4,9 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "A"
-          ],
-          "target": [
-            "B"
-          ],
+          "type": "edge",
+          "source": "A",
+          "target": "B",
           "attributes": {},
           "directed": true
         }
@@ -19,29 +16,11 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "A"
-          ],
-          "target": [
-            "B"
-          ],
+          "type": "edge",
+          "source": "A",
+          "target": "B",
           "attributes": {},
           "directed": true
-        }
-      ]
-    },
-    "C": {
-      "attributes": {},
-      "edges": [
-        {
-          "source": [
-            "C"
-          ],
-          "target": [
-            "D"
-          ],
-          "attributes": {},
-          "directed": false
         }
       ]
     },
@@ -49,12 +28,9 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "A1"
-          ],
-          "target": [
-            "D"
-          ],
+          "type": "edge",
+          "source": "A1",
+          "target": "D",
           "attributes": {},
           "directed": false
         }
@@ -64,12 +40,21 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "B1"
-          ],
-          "target": [
-            "D"
-          ],
+          "type": "edge",
+          "source": "B1",
+          "target": "D",
+          "attributes": {},
+          "directed": false
+        }
+      ]
+    },
+    "C": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "edge",
+          "source": "C",
+          "target": "D",
           "attributes": {},
           "directed": false
         }
@@ -79,32 +64,23 @@
       "attributes": {},
       "edges": [
         {
-          "source": [
-            "C"
-          ],
-          "target": [
-            "D"
-          ],
+          "type": "edge",
+          "source": "A1",
+          "target": "D",
           "attributes": {},
           "directed": false
         },
         {
-          "source": [
-            "A1"
-          ],
-          "target": [
-            "D"
-          ],
+          "type": "edge",
+          "source": "B1",
+          "target": "D",
           "attributes": {},
           "directed": false
         },
         {
-          "source": [
-            "B1"
-          ],
-          "target": [
-            "D"
-          ],
+          "type": "edge",
+          "source": "C",
+          "target": "D",
           "attributes": {},
           "directed": false
         }

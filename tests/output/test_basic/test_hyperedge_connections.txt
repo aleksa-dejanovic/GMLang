@@ -1,0 +1,124 @@
+{
+  "nodes": {
+    "E": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "B",
+            "C",
+            "A"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    },
+    "C": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "B",
+            "C",
+            "A"
+          ],
+          "target": [],
+          "attributes": {}
+        },
+        {
+          "type": "hyperedge",
+          "source": [
+            "B",
+            "C",
+            "A"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    },
+    "A": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "B",
+            "C",
+            "A"
+          ],
+          "target": [],
+          "attributes": {}
+        },
+        {
+          "type": "hyperedge",
+          "source": [
+            "B",
+            "C",
+            "A"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    },
+    "B": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "B",
+            "C",
+            "A"
+          ],
+          "target": [],
+          "attributes": {}
+        },
+        {
+          "type": "hyperedge",
+          "source": [
+            "B",
+            "C",
+            "A"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    },
+    "D": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "B",
+            "C",
+            "A"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    }
+  }
+}
