@@ -74,33 +74,63 @@ class BasicInterpreter:
             if inner.__class__.__name__.endswith("Command"):
                 self._execute_command(inner)
 
-        directed = (
-            command.operator == "->"
-            or command.operator == "<-"
-            or command.operator == "<>"
-        )
-        if (
-            command.operator == "--"
-            or command.operator == "->"
-            or command.operator == "<>"
-        ):
-            source_nodes = [self.get_variable(node) for node in command.first.nodes]
-            target_nodes = [self.get_variable(node) for node in command.second.nodes]
-        elif command.operator == "<-" or command.operator == "<>":
-            source_nodes = [self.get_variable(node) for node in command.second.nodes]
-            target_nodes = [self.get_variable(node) for node in command.first.nodes]
+        directed = command.operator in ("->", "<-", "<>")
+
+        source_nodes = []
+        target_nodes = []
+        if command.operator in ("--", "->", "<>"):
+            source_nodes.extend(
+                [self.get_variable(node) for node in command.first.nodes]
+            )
+            target_nodes.extend(
+                [self.get_variable(node) for node in command.second.nodes]
+            )
+
+        elif command.operator in ("<-", "<>"):
+            source_nodes.extend(
+                [self.get_variable(node) for node in command.second.nodes]
+            )
+            target_nodes.extend(
+                [self.get_variable(node) for node in command.first.nodes]
+            )
+
         edges = self._create_edges(
             source_nodes,
             target_nodes,
             directed,
             command.attributes,
         )
-        if command.operator == "<>":
-            edges += self._create_edges(
-                target_nodes,
-                source_nodes,
-                directed,
-                command.attributes,
+        for edge in edges:
+            self._graph.add_edge(edge)
+
+    def _interpret_InfixConnectionCommand(self, command) -> None:
+
+        for inner in (command.first, command.second):
+            if inner.__class__.__name__.endswith("Command"):
+                self._execute_command(inner)
+
+        directed = command.operator in ("->", "<-", "<>")
+        source_nodes = []
+        target_nodes = []
+        if command.operator in ("--", "->", "<>"):
+            source_nodes.extend(
+                [self.get_variable(node) for node in command.first.nodes]
             )
+            target_nodes.extend(
+                [self.get_variable(node) for node in command.second.nodes]
+            )
+        elif command.operator in ("<-", "<>"):
+            source_nodes.extend(
+                [self.get_variable(node) for node in command.second.nodes]
+            )
+            target_nodes.extend(
+                [self.get_variable(node) for node in command.first.nodes]
+            )
+        edges = self._create_edges(
+            source_nodes,
+            target_nodes,
+            directed,
+            command.attributes,
+        )
         for edge in edges:
             self._graph.add_edge(edge)
