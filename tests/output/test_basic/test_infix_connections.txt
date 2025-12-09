@@ -1,0 +1,188 @@
+{
+  "nodes": {
+    "A": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "A"
+          ],
+          "target": [
+            "B"
+          ],
+          "attributes": {
+            "tag": "sister"
+          },
+          "directed": true
+        }
+      ]
+    },
+    "B": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "A"
+          ],
+          "target": [
+            "B"
+          ],
+          "attributes": {
+            "tag": "sister"
+          },
+          "directed": true
+        }
+      ]
+    },
+    "C": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "C"
+          ],
+          "target": [
+            "D"
+          ],
+          "attributes": {
+            "tag": "friend"
+          },
+          "directed": false
+        }
+      ]
+    },
+    "D": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "C"
+          ],
+          "target": [
+            "D"
+          ],
+          "attributes": {
+            "tag": "friend"
+          },
+          "directed": false
+        }
+      ]
+    },
+    "E": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "E"
+          ],
+          "target": [
+            "H"
+          ],
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        },
+        {
+          "source": [
+            "E"
+          ],
+          "target": [
+            "G"
+          ],
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        }
+      ]
+    },
+    "F": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "F"
+          ],
+          "target": [
+            "H"
+          ],
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        },
+        {
+          "source": [
+            "F"
+          ],
+          "target": [
+            "G"
+          ],
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        }
+      ]
+    },
+    "H": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "E"
+          ],
+          "target": [
+            "H"
+          ],
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        },
+        {
+          "source": [
+            "F"
+          ],
+          "target": [
+            "H"
+          ],
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        }
+      ]
+    },
+    "G": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "E"
+          ],
+          "target": [
+            "G"
+          ],
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        },
+        {
+          "source": [
+            "F"
+          ],
+          "target": [
+            "G"
+          ],
+          "attributes": {
+            "tag": "colleague"
+          },
+          "directed": true
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "nodes": {
+    "Y": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "X"
+          ],
+          "target": [
+            "Y"
+          ],
+          "attributes": {},
+          "directed": false
+        },
+        {
+          "source": [
+            "X"
+          ],
+          "target": [
+            "Y"
+          ],
+          "attributes": {},
+          "directed": true
+        },
+        {
+          "source": [
+            "Y"
+          ],
+          "target": [
+            "X"
+          ],
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "X": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "X"
+          ],
+          "target": [
+            "Y"
+          ],
+          "attributes": {},
+          "directed": false
+        },
+        {
+          "source": [
+            "X"
+          ],
+          "target": [
+            "Y"
+          ],
+          "attributes": {},
+          "directed": true
+        },
+        {
+          "source": [
+            "Y"
+          ],
+          "target": [
+            "X"
+          ],
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "M": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "M"
+          ],
+          "target": [
+            "P"
+          ],
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "O": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "O"
+          ],
+          "target": [
+            "P"
+          ],
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "N": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "N"
+          ],
+          "target": [
+            "P"
+          ],
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "P": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "M"
+          ],
+          "target": [
+            "P"
+          ],
+          "attributes": {},
+          "directed": true
+        },
+        {
+          "source": [
+            "O"
+          ],
+          "target": [
+            "P"
+          ],
+          "attributes": {},
+          "directed": true
+        },
+        {
+          "source": [
+            "N"
+          ],
+          "target": [
+            "P"
+          ],
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    }
+  }
+}

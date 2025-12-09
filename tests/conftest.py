@@ -2,6 +2,18 @@ import pytest
 import textx
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--overwrite", action="store_true", help="Allow overwriting expected data"
+    )
+
+
+@pytest.fixture
+def overwrite(request):
+    """Fixture to access the overwrite option"""
+    return request.config.getoption("--overwrite")
+
+
 @pytest.fixture(scope="session", autouse=True)
 def setup_session():
     """Runs once before any tests"""

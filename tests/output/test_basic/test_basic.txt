@@ -1,0 +1,114 @@
+{
+  "nodes": {
+    "A": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "A"
+          ],
+          "target": [
+            "B"
+          ],
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "B": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "A"
+          ],
+          "target": [
+            "B"
+          ],
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "C": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "C"
+          ],
+          "target": [
+            "D"
+          ],
+          "attributes": {},
+          "directed": false
+        }
+      ]
+    },
+    "A1": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "A1"
+          ],
+          "target": [
+            "D"
+          ],
+          "attributes": {},
+          "directed": false
+        }
+      ]
+    },
+    "B1": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "B1"
+          ],
+          "target": [
+            "D"
+          ],
+          "attributes": {},
+          "directed": false
+        }
+      ]
+    },
+    "D": {
+      "attributes": {},
+      "edges": [
+        {
+          "source": [
+            "C"
+          ],
+          "target": [
+            "D"
+          ],
+          "attributes": {},
+          "directed": false
+        },
+        {
+          "source": [
+            "A1"
+          ],
+          "target": [
+            "D"
+          ],
+          "attributes": {},
+          "directed": false
+        },
+        {
+          "source": [
+            "B1"
+          ],
+          "target": [
+            "D"
+          ],
+          "attributes": {},
+          "directed": false
+        }
+      ]
+    }
+  }
+}
