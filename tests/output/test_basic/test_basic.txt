@@ -24,18 +24,6 @@
         }
       ]
     },
-    "A1": {
-      "attributes": {},
-      "edges": [
-        {
-          "type": "edge",
-          "source": "A1",
-          "target": "D",
-          "attributes": {},
-          "directed": false
-        }
-      ]
-    },
     "B1": {
       "attributes": {},
       "edges": [
@@ -60,7 +48,7 @@
         }
       ]
     },
-    "D": {
+    "A1": {
       "attributes": {},
       "edges": [
         {
@@ -69,7 +57,12 @@
           "target": "D",
           "attributes": {},
           "directed": false
-        },
+        }
+      ]
+    },
+    "D": {
+      "attributes": {},
+      "edges": [
         {
           "type": "edge",
           "source": "B1",
@@ -80,6 +73,13 @@
         {
           "type": "edge",
           "source": "C",
+          "target": "D",
+          "attributes": {},
+          "directed": false
+        },
+        {
+          "type": "edge",
+          "source": "A1",
           "target": "D",
           "attributes": {},
           "directed": false

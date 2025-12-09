@@ -28,16 +28,6 @@
             "B",
             "C"
           ],
-          "target": [],
-          "attributes": {}
-        },
-        {
-          "type": "hyperedge",
-          "source": [
-            "A",
-            "B",
-            "C"
-          ],
           "target": [
             "D",
             "E"
@@ -56,16 +46,6 @@
             "B",
             "C"
           ],
-          "target": [],
-          "attributes": {}
-        },
-        {
-          "type": "hyperedge",
-          "source": [
-            "A",
-            "B",
-            "C"
-          ],
           "target": [
             "D",
             "E"
@@ -77,16 +57,6 @@
     "C": {
       "attributes": {},
       "edges": [
-        {
-          "type": "hyperedge",
-          "source": [
-            "A",
-            "B",
-            "C"
-          ],
-          "target": [],
-          "attributes": {}
-        },
         {
           "type": "hyperedge",
           "source": [

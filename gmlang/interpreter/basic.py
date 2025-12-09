@@ -14,8 +14,11 @@ class BasicInterpreter:
             return True
         return False
 
-    def get_variable(self, name: str) -> object:
-        return self.variables.get(name, None)
+    def get_variable(self, name: str, forgive=False) -> object:
+        got = self.variables.get(name, None)
+        if got is None and not forgive:
+            raise TextXSemanticError("Using a non-declared alias")
+        return got
 
     def update_variable(self, name, value) -> bool:
         if name in self.variables:
@@ -136,6 +139,9 @@ class BasicInterpreter:
             self._graph.add_edge(edge)
 
     def _interpret_HyperEdgeChain(self, command) -> None:
+        for inner in command.inners:
+            if inner.__class__.__name__.endswith("Command"):
+                self._execute_command(inner)
         if command.contents["undirected"]:
             source = [
                 self.get_variable(node) for node in command.contents["undirected"]

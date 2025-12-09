@@ -1,5 +1,7 @@
 import os, sys, json
 
+from textx import TextXSemanticError
+
 from gmlang.interpreter.basic import BasicInterpreter
 
 from gmlang.graph.graph import Graph
@@ -96,3 +98,46 @@ def test_hyperedge_connections(request, metamodel, overwrite):
     interpreter.interpret(model.commands)
     graph = interpreter._graph
     check_graph(graph, request, overwrite)
+
+
+def test_hyperedge_chain(request, metamodel, overwrite):
+    text = """
+    *<- node A *-> node D, E *<- node B *<- node C
+    """
+    model = metamodel.model_from_str(text)
+    interpreter = BasicInterpreter()
+    interpreter.interpret(model.commands)
+    graph = interpreter._graph
+    check_graph(graph, request, overwrite)
+
+
+def test_hyperedge_non_declared(metamodel):
+    text = """
+    *<- node A *-> node D, E *<- B *<- node C
+    """
+    model = metamodel.model_from_str(text)
+    interpreter = BasicInterpreter()
+    try:
+        interpreter.interpret(model.commands)
+    except TextXSemanticError:
+        return
+
+    assert False, "Interpreting should have failed due to undeclared aliases"
+
+
+def test_duplicate_alias(metamodel):
+    text = """
+    node A
+    node B
+    A -- B
+    node C
+    node A
+    """
+    model = metamodel.model_from_str(text)
+    interpreter = BasicInterpreter()
+    try:
+        interpreter.interpret(model.commands)
+    except TextXSemanticError:
+        return
+
+    assert False, "Interpreting should have failed due to duplicate aliases"

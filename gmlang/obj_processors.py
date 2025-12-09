@@ -62,6 +62,7 @@ def process_standard_connection(cmd):
 def process_hyperedge_chain(cmd):
     process_attributes(cmd)
     operators = {"*--": "undirected", "*->": "target", "*<-": "source"}
+    cmd.inners = [edge.inner for edge in cmd.edges]
     cmd.contents = {
         op: {
             node
