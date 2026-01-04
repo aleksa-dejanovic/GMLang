@@ -1,0 +1,10 @@
+import graph_definition
+import common
+
+Expression:
+    GraphDefinitionCommand
+;
+
+LetStatement:
+    LET name=Identifier BE expr=Expression
+;

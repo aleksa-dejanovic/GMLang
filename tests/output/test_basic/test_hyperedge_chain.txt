@@ -1,0 +1,94 @@
+{
+  "nodes": {
+    "D": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "A",
+            "B",
+            "C"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    },
+    "A": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "A",
+            "B",
+            "C"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    },
+    "B": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "A",
+            "B",
+            "C"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    },
+    "C": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "A",
+            "B",
+            "C"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    },
+    "E": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "hyperedge",
+          "source": [
+            "A",
+            "B",
+            "C"
+          ],
+          "target": [
+            "D",
+            "E"
+          ],
+          "attributes": {}
+        }
+      ]
+    }
+  }
+}

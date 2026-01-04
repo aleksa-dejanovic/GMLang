@@ -1,0 +1,118 @@
+{
+  "nodes": {
+    "Y": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "edge",
+          "source": "X",
+          "target": "Y",
+          "attributes": {},
+          "directed": false
+        },
+        {
+          "type": "edge",
+          "source": "X",
+          "target": "Y",
+          "attributes": {},
+          "directed": true
+        },
+        {
+          "type": "edge",
+          "source": "Y",
+          "target": "X",
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "X": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "edge",
+          "source": "X",
+          "target": "Y",
+          "attributes": {},
+          "directed": false
+        },
+        {
+          "type": "edge",
+          "source": "X",
+          "target": "Y",
+          "attributes": {},
+          "directed": true
+        },
+        {
+          "type": "edge",
+          "source": "Y",
+          "target": "X",
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "N": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "edge",
+          "source": "N",
+          "target": "P",
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "M": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "edge",
+          "source": "M",
+          "target": "P",
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "O": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "edge",
+          "source": "O",
+          "target": "P",
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    },
+    "P": {
+      "attributes": {},
+      "edges": [
+        {
+          "type": "edge",
+          "source": "N",
+          "target": "P",
+          "attributes": {},
+          "directed": true
+        },
+        {
+          "type": "edge",
+          "source": "M",
+          "target": "P",
+          "attributes": {},
+          "directed": true
+        },
+        {
+          "type": "edge",
+          "source": "O",
+          "target": "P",
+          "attributes": {},
+          "directed": true
+        }
+      ]
+    }
+  }
+}

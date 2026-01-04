@@ -1,5 +1,6 @@
 import graph_definition
 import graph_context
+import expression
 
 File:
     commands*=Command
@@ -9,6 +10,7 @@ Command[ws='\t \r']:
     '\n'* (
     GraphDefinitionCommand
     | GraphContextCommand
+    | LetStatement
     ) ('\n'+)
 ;
 
