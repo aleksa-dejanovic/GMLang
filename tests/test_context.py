@@ -7,7 +7,7 @@ def test_create_graph_command(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     commands = model.commands
 
@@ -39,7 +39,7 @@ def test_use_graph_command(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     commands = model.commands
     assert len(commands) == 2, "Expected 2 commands in the model"
@@ -69,7 +69,7 @@ def test_list_graphs_command(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     commands = model.commands
     assert len(commands) == 2, "Expected 2 commands in the model"
@@ -94,7 +94,7 @@ def test_drop_graph_command(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     commands = model.commands
     assert len(commands) == 2, "Expected 2 commands in the model"
@@ -128,7 +128,7 @@ def test_args_kwargs(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     commands = model.commands
     assert len(commands) == 6, "Expected 6 commands in the model"

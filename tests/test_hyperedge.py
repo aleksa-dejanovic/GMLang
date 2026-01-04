@@ -27,7 +27,7 @@ def test_undirected(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
     commands = model.commands
     assert len(commands) == 4, "Expected 4 commands in the model"
     assert_hyperedge_chain(
@@ -65,7 +65,7 @@ def test_directed(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
     commands = model.commands
     assert len(commands) == 4, "Expected 4 commands in the model"
     assert_hyperedge_chain(
@@ -95,13 +95,15 @@ def test_directed(metamodel):
 
 def test_mixed(metamodel):
     try:
-        model = metamodel.model_from_str(
+        metamodel.model_from_str(
             """
             *-- {A, B} *-> {C, D} *<- (node E)
             *<- {X, Y} *-- {Z} *-> (node W)
             """
         )
-        assert False, "Model parsing should have failed due to mixed hyperedge types"
+        raise AssertionError(
+                "Model parsing should have failed due to mixed hyperedge types"
+            )
     except Exception as e:
         assert isinstance(
             e, TextXSemanticError

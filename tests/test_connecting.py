@@ -9,7 +9,7 @@ def test_undirected_connection(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     connected = [(cmd.first.nodes, cmd.second.nodes) for cmd in model.commands]
     import pprint
@@ -56,7 +56,7 @@ def test_directed_connection1(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     connected = [(cmd.first.nodes, cmd.second.nodes) for cmd in model.commands]
     operators = [cmd.operator for cmd in model.commands]
@@ -93,7 +93,7 @@ def test_directed_connection2(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     connected = [(cmd.first.nodes, cmd.second.nodes) for cmd in model.commands]
     operators = [cmd.operator for cmd in model.commands]
@@ -135,7 +135,7 @@ def test_simple_attributed_connection(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     connections = [
         (
@@ -179,7 +179,7 @@ def test_infix_attributed_connection(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     connections = [
         (
@@ -225,7 +225,7 @@ def test_attributed_connection(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     connections = [
         (
@@ -276,7 +276,7 @@ def test_node_sets(metamodel):
             """
         )
     except Exception as e:
-        assert False, f"Model parsing failed with exception: {e}"
+        raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     connections = [
         (
