@@ -141,3 +141,13 @@ def test_duplicate_alias(metamodel):
         return
 
     assert False, "Interpreting should have failed due to duplicate aliases"
+
+def test_let_node(metamodel):
+    text = """
+    let SomeName be node A
+    let podgraf be node B, C, D
+    """
+
+    model = metamodel.model_from_str(text)
+    interpreter = BasicInterpreter()
+    interpreter.interpret(model.commands)

@@ -31,15 +31,17 @@ class BasicInterpreter:
         for command in commands:
             self._execute_command(command)
 
-    def _execute_command(self, command) -> None:
+    def _execute_command(self, command) -> object:
         handler_name: str = "_interpret_" + command.__class__.__name__
         handler = getattr(self, handler_name, None)
         if handler:
-            handler(command)
+            res = handler(command)
         else:
             raise NotImplementedError(
                 f"No handler for command type: {command.__class__.__name__}"
             )
+        
+        return res
 
     def _create_edges(
         self,
@@ -61,17 +63,23 @@ class BasicInterpreter:
                 )
         return edges
 
-    def _interpret_NodeCreationCommand(self, command) -> None:
+    def _interpret_NodeCreationCommand(
+            self,
+            command,
+            )-> list["Node"] | None:
+        nodes = []
         for node in command.nodes:
             node_obj: Node = Node(id=node, attributes=command.attributes)
+            nodes.append(node_obj)
             ok = self.set_variable(node, node_obj)
             if not ok:
                 raise TextXSemanticError(f"Node '{node}' already exists.")
             self._graph.add_node(node_obj)
 
         print(f"Creating nodes {[node for node in command.nodes]}")
+        return nodes
 
-    def _interpret_StandardConnectionCommand(self, command) -> None:
+    def _interpret_StandardConnectionCommand(self, command) -> list[Edge]:
 
         for inner in (command.first, command.second):
             if inner.__class__.__name__.endswith("Command"):
@@ -106,7 +114,9 @@ class BasicInterpreter:
         for edge in edges:
             self._graph.add_edge(edge)
 
-    def _interpret_InfixConnectionCommand(self, command) -> None:
+        return edges
+
+    def _interpret_InfixConnectionCommand(self, command) -> list[Edge]:
 
         for inner in (command.first, command.second):
             if inner.__class__.__name__.endswith("Command"):
@@ -137,8 +147,10 @@ class BasicInterpreter:
         )
         for edge in edges:
             self._graph.add_edge(edge)
+        
+        return edges
 
-    def _interpret_HyperEdgeChain(self, command) -> None:
+    def _interpret_HyperEdgeChain(self, command) -> Hyperedge:
         for inner in command.inners:
             if inner.__class__.__name__.endswith("Command"):
                 self._execute_command(inner)
@@ -152,3 +164,16 @@ class BasicInterpreter:
             target = [self.get_variable(node) for node in command.contents["target"]]
         he = Hyperedge(source, target, command.attributes)
         self._graph.add_hyperedge(he)
+
+        return he
+    
+    def _interpret_LetStatement(self, command) -> object:
+        if command.expr.__class__.__name__.endswith("Command"):
+            value = self._execute_command(command.expr)
+        else:
+            value = command.expr
+        self.set_variable(command.name, value)
+        print("SACUVANO JE IME ", command.name, "I VREDNOST ", end="")
+        print(self.get_variable(command.name))
+        return value
+

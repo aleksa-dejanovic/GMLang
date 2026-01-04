@@ -6,8 +6,6 @@ def list_to_dict(l):
 
 
 def process_attributes(cmd):
-    import pdb
-
     if not cmd.attr_list:
         try:
             if not cmd.tag:
@@ -81,3 +79,6 @@ def process_hyperedge_chain(cmd):
         raise TextXSemanticError(
             "Hyperedge cannot have both source nodes and target/undirected nodes."
         )
+
+def process_let(cmd):
+    print(cmd.name, cmd.expr)

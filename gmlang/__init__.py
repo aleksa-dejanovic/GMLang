@@ -25,6 +25,7 @@ def gmlang_language():
             "NodeSet": obj_processors.process_node_set,
             "NodeList": obj_processors.process_nodes,
             "HyperEdgeChain": obj_processors.process_hyperedge_chain,
+            "LetStatement": obj_processors.process_let
         }
     )
 
