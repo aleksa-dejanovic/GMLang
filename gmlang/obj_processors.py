@@ -79,6 +79,3 @@ def process_hyperedge_chain(cmd):
         raise TextXSemanticError(
             "Hyperedge cannot have both source nodes and target/undirected nodes."
         )
-
-def process_let(cmd):
-    print(cmd.name, cmd.expr)

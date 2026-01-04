@@ -12,9 +12,6 @@ def test_undirected_connection(metamodel):
         raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     connected = [(cmd.first.nodes, cmd.second.nodes) for cmd in model.commands]
-    import pprint
-
-    pprint.pprint(connected)
     operators = [cmd.operator for cmd in model.commands]
 
     # Test that there are no attributes

@@ -3,6 +3,7 @@ from typing import Literal, overload
 
 from textx.exceptions import TextXSemanticError
 
+from gmlang.common.types import Storable, Subgraph
 from gmlang.graph.graph import Edge, Graph, Hyperedge, Node
 
 
@@ -12,7 +13,7 @@ class BasicInterpreter:
         self._variables = {}
         self._graph = Graph()
 
-    def _set_variable(self, name: str, value: object) -> None:
+    def _set_variable(self, name: str, value: Storable) -> None:
         if name not in self._variables:
             if self._verbose:
                 print(f"Setting variable name {name} to value {value}")
@@ -21,11 +22,11 @@ class BasicInterpreter:
             raise TextXSemanticError(f"Overwriting an existing alias {name}")
 
     @overload
-    def get_variable(self, name: str, forgive: Literal[False] = False) -> object: ...
+    def get_variable(self, name: str, forgive: Literal[False] = False) -> Storable: ...
     @overload
-    def get_variable(self, name: str, forgive: Literal[True]) -> object | None: ...
+    def get_variable(self, name: str, forgive: Literal[True]) -> Storable | None: ...
 
-    def get_variable(self, name: str, forgive: bool = False) -> object | None:
+    def get_variable(self, name: str, forgive: bool = False) -> Storable | None:
         try:
             got = self._variables[name]
             if self._verbose:
@@ -38,7 +39,8 @@ class BasicInterpreter:
 
 
     def interpret(self, commands: list) -> None:
-        print("\nInterpreting commands...")
+        if self._verbose:
+            print("\nInterpreting commands...")
         for command in commands:
             self._execute_command(command)
 

@@ -44,7 +44,7 @@ def check_graph(graph, request, overwrite):
         )
 
 
-def test_basic(request, metamodel, overwrite):
+def test_basic(request, metamodel, overwrite, interpret_v):
     text = """
     node A
     node B
@@ -52,13 +52,13 @@ def test_basic(request, metamodel, overwrite):
     node A1, B1, C -- node D
     """
     model = metamodel.model_from_str(text)
-    interpreter = BasicInterpreter()
+    interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
     check_graph(graph, request, overwrite)
 
 
-def test_connection_types(request, metamodel, overwrite):
+def test_connection_types(request, metamodel, overwrite, interpret_v):
     text = """
     node X, Y
     X -- Y
@@ -67,44 +67,44 @@ def test_connection_types(request, metamodel, overwrite):
     node M, N, O <> node P
     """
     model = metamodel.model_from_str(text)
-    interpreter = BasicInterpreter()
+    interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
     check_graph(graph, request, overwrite)
 
 
-def test_infix_connections(request, metamodel, overwrite):
+def test_infix_connections(request, metamodel, overwrite, interpret_v):
     text = """
     node A <sister> node B
     node C -friend- node D
     node E, F -colleague> node G, H
     """
     model = metamodel.model_from_str(text)
-    interpreter = BasicInterpreter()
+    interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
     check_graph(graph, request, overwrite)
 
 
-def test_hyperedge_connections(request, metamodel, overwrite):
+def test_hyperedge_connections(request, metamodel, overwrite, interpret_v):
     text = """
     node A, B, C, D, E
     *-- {A, B, C}
     *<- {A} *-> {D, E} *<- {B} *<- {C}
     """
     model = metamodel.model_from_str(text)
-    interpreter = BasicInterpreter()
+    interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
     check_graph(graph, request, overwrite)
 
 
-def test_hyperedge_chain(request, metamodel, overwrite):
+def test_hyperedge_chain(request, metamodel, overwrite, interpret_v):
     text = """
     *<- node A *-> node D, E *<- node B *<- node C
     """
     model = metamodel.model_from_str(text)
-    interpreter = BasicInterpreter()
+    interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
     check_graph(graph, request, overwrite)

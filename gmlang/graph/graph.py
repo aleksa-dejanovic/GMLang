@@ -7,13 +7,15 @@ from dataclasses import dataclass, field
 @dataclass
 class Node:
     id: str
-    edges: list[Edge] = field(default_factory=list)
+    edges: list[Edge | Hyperedge] = field(default_factory=list)
     attributes: dict[str, str] = field(default_factory=dict)
 
     def __repr__(self):
         return f"Node({self.id}, attributes={self.attributes})"
 
-    def __eq__(self, other: Node):
+    def __eq__(self, other: object):
+        if not isinstance(other, Node):
+            raise NotImplementedError("Comparison only possible between nodes")
         return self.id == other.id and self.attributes == other.attributes
 
 
@@ -24,7 +26,7 @@ class Edge:
     attributes: dict[str, str] = field(default_factory=dict)
     directed: bool = False
 
-    def ends(self) -> tuple[Node]:
+    def ends(self) -> tuple[Node, Node]:
         return (self.source, self.target)
 
     def __repr__(self):

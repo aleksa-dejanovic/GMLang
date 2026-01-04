@@ -12,7 +12,6 @@ def test_simple_node_creation(metamodel):
         raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     nodes = [node for cmd in model.commands for node in cmd.nodes]
-    print(nodes)
 
     assert len(nodes) == 4, "Expected 4 nodes in the model"
 
@@ -48,7 +47,6 @@ def test_creation_with_edge_case_names(metamodel):
         raise AssertionError(f"Model parsing failed with exception: {e}") from e
 
     nodes = [node for cmd in model.commands for node in cmd.nodes]
-    print(nodes)
 
     assert len(nodes) == 4, "Expected 4 nodes in the model"
 
