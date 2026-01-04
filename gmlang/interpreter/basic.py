@@ -1,4 +1,5 @@
 import contextlib
+from typing import Literal, overload
 
 from textx.exceptions import TextXSemanticError
 
@@ -6,27 +7,35 @@ from gmlang.graph.graph import Edge, Graph, Hyperedge, Node
 
 
 class BasicInterpreter:
-    def __init__(self):
-        self.variables = {}
+    def __init__(self, verbose=False):
+        self._verbose = verbose
+        self._variables = {}
         self._graph = Graph()
 
-    def set_variable(self, name: str, value: object) -> bool:
-        if name not in self.variables:
-            self.variables[name] = value
-            return True
-        return False
+    def _set_variable(self, name: str, value: object) -> None:
+        if name not in self._variables:
+            if self._verbose:
+                print(f"Setting variable name {name} to value {value}")
+            self._variables[name] = value
+        else:
+            raise TextXSemanticError(f"Overwriting an existing alias {name}")
 
-    def get_variable(self, name: str, forgive=False) -> object:
-        got = self.variables.get(name, None)
-        if got is None and not forgive:
-            raise TextXSemanticError("Using a non-declared alias")
-        return got
+    @overload
+    def get_variable(self, name: str, forgive: Literal[False] = False) -> object: ...
+    @overload
+    def get_variable(self, name: str, forgive: Literal[True]) -> object | None: ...
 
-    def update_variable(self, name, value) -> bool:
-        if name in self.variables:
-            self.variables[name] = value
-            return True
-        return False
+    def get_variable(self, name: str, forgive: bool = False) -> object | None:
+        try:
+            got = self._variables[name]
+            if self._verbose:
+                print(f"Getting variable {name}, got {got}")
+            return got
+        except KeyError as e:
+            if forgive:
+                return None
+            raise TextXSemanticError(f"Using a non-declared alias {name}") from e
+
 
     def interpret(self, commands: list) -> None:
         print("\nInterpreting commands...")
@@ -37,6 +46,8 @@ class BasicInterpreter:
         handler_name: str = "_interpret_" + command.__class__.__name__
         handler = getattr(self, handler_name, None)
         if handler:
+            if self._verbose:
+                print(f"Calling method {handler_name}")
             res = handler(command)
         else:
             raise NotImplementedError(
@@ -73,12 +84,10 @@ class BasicInterpreter:
         for node in command.nodes:
             node_obj: Node = Node(id=node, attributes=command.attributes)
             nodes.append(node_obj)
-            ok = self.set_variable(node, node_obj)
-            if not ok:
-                raise TextXSemanticError(f"Node '{node}' already exists.")
+            self._set_variable(node, node_obj)
             self._graph.add_node(node_obj)
-
-        print(f"Creating nodes {[node for node in command.nodes]}")
+        if self._verbose:
+            print(f"Creating nodes {[node for node in command.nodes]}")
         return nodes
 
     def _interpret_StandardConnectionCommand(self, command) -> list[Edge]:
@@ -174,7 +183,13 @@ class BasicInterpreter:
             value = self._execute_command(command.expr)
         except NotImplementedError:
             value = command.expr
-        self.set_variable(command.name, value)
-        print("SACUVANO JE IME ", command.name, "I VREDNOST ", end="")
-        print(self.get_variable(command.name))
+        self._set_variable(command.name, value)
+        return value
+    
+    def _interpret_AsStatement(self, command) -> object:
+        try:
+            value = self._execute_command(command.expr)
+        except NotImplementedError:
+            value = command.expr
+        self._set_variable(command.name, value)
         return value

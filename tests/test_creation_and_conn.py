@@ -141,7 +141,7 @@ def test_mixed_node_sets(metamodel):
             H <> {I, J} team
             (K -- node L) [tag: "extra_connection"]
             (node M [tag: "isolated_node"] <> node N [tag: "isolated_node_2"]) [tag: "isolated_connection"]
-            """
+            """  # noqa: E501
         )
     except Exception as e:
         raise AssertionError(f"Model parsing failed with exception: {e}") from e

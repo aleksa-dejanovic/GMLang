@@ -42,7 +42,7 @@ class GraphJSONEncoder(json.JSONEncoder):
 
 class GraphJSONDecoder(json.JSONDecoder):
     def __init__(self, *args, **kwargs):
-        super().__init__(object_hook=self.object_hook, *args, **kwargs)
+        super().__init__(*args, object_hook=self.object_hook, **kwargs)
         self.nodes_map = {}
 
     def object_hook(self, obj: dict[str, Any]):

@@ -1,11 +1,10 @@
-import os, sys, json
+import json
+import os
 
 from textx import TextXSemanticError
 
-from gmlang.interpreter.basic import BasicInterpreter
-
-from gmlang.graph.graph import Graph
 from gmlang.graph.json_encoder import GraphJSONDecoder, GraphJSONEncoder
+from gmlang.interpreter.basic import BasicInterpreter
 
 
 def get_output_path(request) -> str:
@@ -25,7 +24,7 @@ def read_output(request) -> str:
     out_file = get_output_path(request)
     if not os.path.exists(out_file):
         return ""
-    with open(out_file, "r", encoding="utf-8") as f:
+    with open(out_file, encoding="utf-8") as f:
         return f.read()
 
 
@@ -122,7 +121,7 @@ def test_hyperedge_non_declared(metamodel):
     except TextXSemanticError:
         return
 
-    assert False, "Interpreting should have failed due to undeclared aliases"
+    raise AssertionError("Interpreting should have failed due to undeclared aliases")
 
 
 def test_duplicate_alias(metamodel):
@@ -140,12 +139,22 @@ def test_duplicate_alias(metamodel):
     except TextXSemanticError:
         return
 
-    assert False, "Interpreting should have failed due to duplicate aliases"
+    raise AssertionError("Interpreting should have failed due to duplicate aliases")
 
 def test_let_node(metamodel):
     text = """
     let SomeName be node A
     let podgraf be node B, C, D
+    """
+
+    model = metamodel.model_from_str(text)
+    interpreter = BasicInterpreter()
+    interpreter.interpret(model.commands)
+
+def test_as_node(metamodel):
+    text = """
+    node A as SomeName
+    node B, C, D as podgraf
     """
 
     model = metamodel.model_from_str(text)

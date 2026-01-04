@@ -8,3 +8,7 @@ Expression:
 LetStatement:
     LET name=Identifier BE expr=Expression
 ;
+
+AsStatement:
+    expr=Expression AS name=Identifier
+;

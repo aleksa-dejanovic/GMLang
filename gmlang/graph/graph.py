@@ -1,8 +1,7 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Iterable
 
-import json
+from collections.abc import Iterable
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -30,7 +29,8 @@ class Edge:
 
     def __repr__(self):
         dir_symbol = "->" if self.directed else "--"
-        return f"Edge({self.source.id} {dir_symbol} {self.target.id}, attributes={self.attributes})"
+        return (f"Edge({self.source.id} {dir_symbol} {self.target.id}, "
+                "attributes={self.attributes})")
 
 
 @dataclass

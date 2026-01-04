@@ -3,10 +3,11 @@ Identifier:
 ;
 
 Keyword:
-    GRAPH | NODE | LET | BE
+    GRAPH | NODE | LET | BE | AS
 ;
 
 GRAPH: /\bgraph\b/;
 NODE: /\bnode\b/;
 LET: /\blet\b/;
 BE: /\bbe\b/;
+AS: /\bas\b/;
