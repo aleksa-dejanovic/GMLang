@@ -1,6 +1,8 @@
+import contextlib
+
 from textx.exceptions import TextXSemanticError
 
-from gmlang.graph.graph import Node, Edge, Graph, Hyperedge
+from gmlang.graph.graph import Edge, Graph, Hyperedge, Node
 
 
 class BasicInterpreter:
@@ -82,7 +84,7 @@ class BasicInterpreter:
     def _interpret_StandardConnectionCommand(self, command) -> list[Edge]:
 
         for inner in (command.first, command.second):
-            if inner.__class__.__name__.endswith("Command"):
+            with contextlib.suppress(NotImplementedError):
                 self._execute_command(inner)
 
         directed = command.operator in ("->", "<-", "<>")
@@ -119,7 +121,7 @@ class BasicInterpreter:
     def _interpret_InfixConnectionCommand(self, command) -> list[Edge]:
 
         for inner in (command.first, command.second):
-            if inner.__class__.__name__.endswith("Command"):
+            with contextlib.suppress(NotImplementedError):
                 self._execute_command(inner)
 
         directed = command.operator in ("->", "<-", "<>")
@@ -152,7 +154,7 @@ class BasicInterpreter:
 
     def _interpret_HyperEdgeChain(self, command) -> Hyperedge:
         for inner in command.inners:
-            if inner.__class__.__name__.endswith("Command"):
+            with contextlib.suppress(NotImplementedError):
                 self._execute_command(inner)
         if command.contents["undirected"]:
             source = [
@@ -168,12 +170,11 @@ class BasicInterpreter:
         return he
     
     def _interpret_LetStatement(self, command) -> object:
-        if command.expr.__class__.__name__.endswith("Command"):
+        try:
             value = self._execute_command(command.expr)
-        else:
+        except NotImplementedError:
             value = command.expr
         self.set_variable(command.name, value)
         print("SACUVANO JE IME ", command.name, "I VREDNOST ", end="")
         print(self.get_variable(command.name))
         return value
-
