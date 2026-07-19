@@ -124,7 +124,7 @@ class GraphJSONDecoder(json.JSONDecoder):
                 source=[GraphJSONDecoder._node(graph, item) for item in source],
                 target=[GraphJSONDecoder._node(graph, item) for item in target],
                 attributes=attributes,
-                directed=data.get("directed"),
+                directed=bool(data.get("directed", False)),
             )
             graph.add_hyperedge(hyperedge)
             return

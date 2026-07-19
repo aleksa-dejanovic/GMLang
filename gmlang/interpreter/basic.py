@@ -8,9 +8,9 @@ from gmlang.graph.graph import Edge, Graph, Hyperedge, Node
 
 
 class BasicInterpreter:
-    def __init__(self, verbose=False):
+    def __init__(self, verbose: bool = False) -> None:
         self._verbose = verbose
-        self._variables = {}
+        self._variables: dict[str, Storable] = {}
         self._graph = Graph()
 
     def _set_variable(self, name: str, value: Storable) -> None:
@@ -37,6 +37,11 @@ class BasicInterpreter:
                 return None
             raise TextXSemanticError(f"Using a non-declared alias {name}") from e
 
+    def _get_node(self, name: str) -> Node:
+        value = self.get_variable(name)
+        if not isinstance(value, Node):
+            raise TextXSemanticError(f"Alias {name} does not refer to a node")
+        return value
 
     def interpret(self, commands: list) -> None:
         if self._verbose:
@@ -44,7 +49,7 @@ class BasicInterpreter:
         for command in commands:
             self._execute_command(command)
 
-    def _execute_command(self, command) -> object:
+    def _execute_command(self, command) -> Storable:
         handler_name: str = "_interpret_" + command.__class__.__name__
         handler = getattr(self, handler_name, None)
         if handler:
@@ -104,18 +109,18 @@ class BasicInterpreter:
         target_nodes = []
         if command.operator in ("--", "->", "<>"):
             source_nodes.extend(
-                [self.get_variable(node) for node in command.first.nodes]
+                [self._get_node(node) for node in command.first.nodes]
             )
             target_nodes.extend(
-                [self.get_variable(node) for node in command.second.nodes]
+                [self._get_node(node) for node in command.second.nodes]
             )
 
         elif command.operator in ("<-", "<>"):
             source_nodes.extend(
-                [self.get_variable(node) for node in command.second.nodes]
+                [self._get_node(node) for node in command.second.nodes]
             )
             target_nodes.extend(
-                [self.get_variable(node) for node in command.first.nodes]
+                [self._get_node(node) for node in command.first.nodes]
             )
 
         edges = self._create_edges(
@@ -140,17 +145,17 @@ class BasicInterpreter:
         target_nodes = []
         if command.operator in ("--", "->", "<>"):
             source_nodes.extend(
-                [self.get_variable(node) for node in command.first.nodes]
+                [self._get_node(node) for node in command.first.nodes]
             )
             target_nodes.extend(
-                [self.get_variable(node) for node in command.second.nodes]
+                [self._get_node(node) for node in command.second.nodes]
             )
         elif command.operator in ("<-", "<>"):
             source_nodes.extend(
-                [self.get_variable(node) for node in command.second.nodes]
+                [self._get_node(node) for node in command.second.nodes]
             )
             target_nodes.extend(
-                [self.get_variable(node) for node in command.first.nodes]
+                [self._get_node(node) for node in command.first.nodes]
             )
         edges = self._create_edges(
             source_nodes,
@@ -169,18 +174,18 @@ class BasicInterpreter:
                 self._execute_command(inner)
         if command.contents["undirected"]:
             source = [
-                self.get_variable(node) for node in command.contents["undirected"]
+                self._get_node(node) for node in command.contents["undirected"]
             ]
             target = []
         else:
-            source = [self.get_variable(node) for node in command.contents["source"]]
-            target = [self.get_variable(node) for node in command.contents["target"]]
+            source = [self._get_node(node) for node in command.contents["source"]]
+            target = [self._get_node(node) for node in command.contents["target"]]
         he = Hyperedge(source, target, command.attributes)
         self._graph.add_hyperedge(he)
 
         return he
     
-    def _interpret_LetStatement(self, command) -> object:
+    def _interpret_LetStatement(self, command) -> Storable:
         try:
             value = self._execute_command(command.expr)
         except NotImplementedError:
@@ -188,7 +193,7 @@ class BasicInterpreter:
         self._set_variable(command.name, value)
         return value
     
-    def _interpret_AsStatement(self, command) -> object:
+    def _interpret_AsStatement(self, command) -> Storable:
         try:
             value = self._execute_command(command.expr)
         except NotImplementedError:
