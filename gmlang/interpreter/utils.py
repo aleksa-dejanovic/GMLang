@@ -1,7 +1,6 @@
-from collections.abc import Iterable
 from typing import TypeGuard
 
-from gmlang.graph.graph import Edge, Hyperedge, Node
+from gmlang.graph.graph import Node
 
 
 def only_nodes(

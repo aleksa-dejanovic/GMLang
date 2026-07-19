@@ -42,10 +42,10 @@ class GraphJSONEncoder(json.JSONEncoder):
 
 class GraphJSONDecoder(json.JSONDecoder):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, object_hook=self.object_hook, **kwargs)
+        super().__init__(*args, object_hook=self._object_hook, **kwargs)
         self.nodes_map = {}
 
-    def object_hook(self, obj: dict[str, Any]):
+    def _object_hook(self, obj: dict[str, Any]):
         if "nodes" in obj:  # Graph object
             g = Graph()
             for nid, nd in obj["nodes"].items():
@@ -54,6 +54,7 @@ class GraphJSONDecoder(json.JSONDecoder):
             for nid, nd in obj["nodes"].items():
                 node = g.nodes[nid]
                 for e_data in nd.get("edges", []):
+                    edge: Edge | Hyperedge
                     if e_data["type"] == "edge":
                         edge = Edge(
                             source=self.nodes_map[e_data["source"]],

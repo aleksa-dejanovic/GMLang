@@ -1,50 +1,26 @@
 import json
-import os
 
 from textx import TextXSemanticError
 
-from gmlang.graph.json_encoder import GraphJSONDecoder, GraphJSONEncoder
+from gmlang.graph.json_encoder import GraphJSONEncoder
 from gmlang.interpreter.basic import BasicInterpreter
 
 
-def get_output_path(request) -> str:
-    module_name = request.module.__name__.split(".")[-1]
-    test_name = request.node.name
-    return os.path.join("tests", "output", module_name, f"{test_name}.txt")
+def canonicalize(value):
+    if isinstance(value, dict):
+        return {key: canonicalize(item) for key, item in sorted(value.items())}
+    if isinstance(value, list):
+        items = [canonicalize(item) for item in value]
+        return sorted(items, key=lambda item: json.dumps(item, sort_keys=True))
+    return value
 
 
-def generate_output(request, content: str):
-    out_file = get_output_path(request)
-    os.makedirs(os.path.dirname(out_file), exist_ok=True)
-    with open(out_file, "w", encoding="utf-8") as f:
-        f.write(content)
+def check_graph(graph, snapshot):
+    graph_data = GraphJSONEncoder().default(graph)
+    assert canonicalize(graph_data) == snapshot
 
 
-def read_output(request) -> str:
-    out_file = get_output_path(request)
-    if not os.path.exists(out_file):
-        return ""
-    with open(out_file, encoding="utf-8") as f:
-        return f.read()
-
-
-def check_graph(graph, request, overwrite):
-    if overwrite:
-        graph_json = json.dumps(graph, cls=GraphJSONEncoder, indent=2)
-        generate_output(request, graph_json)
-    else:
-        expected = read_output(request)
-        if expected == "":
-            raise Exception("Output file empty")
-        exp_graph = json.loads(expected, cls=GraphJSONDecoder)
-        assert graph == exp_graph, (
-            f"Graph is not as expected\n"
-            f"GOT:\n{repr(graph)}\n"
-            f"Expected:\n{expected}"
-        )
-
-
-def test_basic(request, metamodel, overwrite, interpret_v):
+def test_basic(metamodel, snapshot, interpret_v):
     text = """
     node A
     node B
@@ -55,10 +31,10 @@ def test_basic(request, metamodel, overwrite, interpret_v):
     interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
-    check_graph(graph, request, overwrite)
+    check_graph(graph, snapshot)
 
 
-def test_connection_types(request, metamodel, overwrite, interpret_v):
+def test_connection_types(metamodel, snapshot, interpret_v):
     text = """
     node X, Y
     X -- Y
@@ -70,10 +46,10 @@ def test_connection_types(request, metamodel, overwrite, interpret_v):
     interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
-    check_graph(graph, request, overwrite)
+    check_graph(graph, snapshot)
 
 
-def test_infix_connections(request, metamodel, overwrite, interpret_v):
+def test_infix_connections(metamodel, snapshot, interpret_v):
     text = """
     node A <sister> node B
     node C -friend- node D
@@ -83,10 +59,10 @@ def test_infix_connections(request, metamodel, overwrite, interpret_v):
     interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
-    check_graph(graph, request, overwrite)
+    check_graph(graph, snapshot)
 
 
-def test_hyperedge_connections(request, metamodel, overwrite, interpret_v):
+def test_hyperedge_connections(metamodel, snapshot, interpret_v):
     text = """
     node A, B, C, D, E
     *-- {A, B, C}
@@ -96,10 +72,10 @@ def test_hyperedge_connections(request, metamodel, overwrite, interpret_v):
     interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
-    check_graph(graph, request, overwrite)
+    check_graph(graph, snapshot)
 
 
-def test_hyperedge_chain(request, metamodel, overwrite, interpret_v):
+def test_hyperedge_chain(metamodel, snapshot, interpret_v):
     text = """
     *<- node A *-> node D, E *<- node B *<- node C
     """
@@ -107,7 +83,7 @@ def test_hyperedge_chain(request, metamodel, overwrite, interpret_v):
     interpreter = BasicInterpreter(verbose=interpret_v)
     interpreter.interpret(model.commands)
     graph = interpreter._graph
-    check_graph(graph, request, overwrite)
+    check_graph(graph, snapshot)
 
 
 def test_hyperedge_non_declared(metamodel):

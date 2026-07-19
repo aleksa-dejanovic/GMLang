@@ -38,6 +38,7 @@ test = [
     "mypy>=1.19.0",
     "pytest>=9.0.1",
     "ruff>=0.14.8",
+    "syrupy>=5.0.0",
 ]
 dbg = [
     "ipython>=9.7.0",
@@ -84,5 +85,4 @@ select = [
     # isort
     "I",
 ]
-
 

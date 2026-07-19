@@ -3,7 +3,7 @@ from typing import Literal, overload
 
 from textx.exceptions import TextXSemanticError
 
-from gmlang.common.types import Storable, Subgraph
+from gmlang.common.types import Storable
 from gmlang.graph.graph import Edge, Graph, Hyperedge, Node
 
 

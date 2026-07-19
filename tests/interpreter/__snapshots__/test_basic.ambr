@@ -1,0 +1,655 @@
+# serializer version: 1
+# name: test_basic
+  dict({
+    'nodes': dict({
+      'A': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'A',
+            'target': 'B',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'A1': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': False,
+            'source': 'A1',
+            'target': 'D',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'B': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'A',
+            'target': 'B',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'B1': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': False,
+            'source': 'B1',
+            'target': 'D',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'C': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': False,
+            'source': 'C',
+            'target': 'D',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'D': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': False,
+            'source': 'A1',
+            'target': 'D',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'directed': False,
+            'source': 'B1',
+            'target': 'D',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'directed': False,
+            'source': 'C',
+            'target': 'D',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---
+# name: test_connection_types
+  dict({
+    'nodes': dict({
+      'M': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'M',
+            'target': 'P',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'N': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'N',
+            'target': 'P',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'O': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'O',
+            'target': 'P',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'P': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'M',
+            'target': 'P',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'N',
+            'target': 'P',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'O',
+            'target': 'P',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'X': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': False,
+            'source': 'X',
+            'target': 'Y',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'X',
+            'target': 'Y',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'Y',
+            'target': 'X',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'Y': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'directed': False,
+            'source': 'X',
+            'target': 'Y',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'X',
+            'target': 'Y',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'directed': True,
+            'source': 'Y',
+            'target': 'X',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---
+# name: test_hyperedge_chain
+  dict({
+    'nodes': dict({
+      'A': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+      'B': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+      'C': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+      'D': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+      'E': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---
+# name: test_hyperedge_connections
+  dict({
+    'nodes': dict({
+      'A': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+      'B': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+      'C': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+      'D': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+      'E': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+            }),
+            'source': list([
+              'A',
+              'B',
+              'C',
+            ]),
+            'target': list([
+              'D',
+              'E',
+            ]),
+            'type': 'hyperedge',
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---
+# name: test_infix_connections
+  dict({
+    'nodes': dict({
+      'A': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+              'tag': 'sister',
+            }),
+            'directed': True,
+            'source': 'A',
+            'target': 'B',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'B': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+              'tag': 'sister',
+            }),
+            'directed': True,
+            'source': 'A',
+            'target': 'B',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'C': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+              'tag': 'friend',
+            }),
+            'directed': False,
+            'source': 'C',
+            'target': 'D',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'D': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+              'tag': 'friend',
+            }),
+            'directed': False,
+            'source': 'C',
+            'target': 'D',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'E': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+              'tag': 'colleague',
+            }),
+            'directed': True,
+            'source': 'E',
+            'target': 'G',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+              'tag': 'colleague',
+            }),
+            'directed': True,
+            'source': 'E',
+            'target': 'H',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'F': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+              'tag': 'colleague',
+            }),
+            'directed': True,
+            'source': 'F',
+            'target': 'G',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+              'tag': 'colleague',
+            }),
+            'directed': True,
+            'source': 'F',
+            'target': 'H',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'G': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+              'tag': 'colleague',
+            }),
+            'directed': True,
+            'source': 'E',
+            'target': 'G',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+              'tag': 'colleague',
+            }),
+            'directed': True,
+            'source': 'F',
+            'target': 'G',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+      'H': dict({
+        'attributes': dict({
+        }),
+        'edges': list([
+          dict({
+            'attributes': dict({
+              'tag': 'colleague',
+            }),
+            'directed': True,
+            'source': 'E',
+            'target': 'H',
+            'type': 'edge',
+          }),
+          dict({
+            'attributes': dict({
+              'tag': 'colleague',
+            }),
+            'directed': True,
+            'source': 'F',
+            'target': 'H',
+            'type': 'edge',
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---

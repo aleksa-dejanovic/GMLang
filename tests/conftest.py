@@ -4,18 +4,10 @@ import textx
 
 def pytest_addoption(parser):
     parser.addoption(
-        "--overwrite", action="store_true", help="Allow overwriting expected data"
-    )
-    parser.addoption(
         "--interpret-v", action="store_true",
         help="Instantiate Interpreter with verbose flag set"
     )
 
-
-@pytest.fixture
-def overwrite(request):
-    """Fixture to access the overwrite option"""
-    return request.config.getoption("--overwrite")
 
 @pytest.fixture
 def interpret_v(request):
