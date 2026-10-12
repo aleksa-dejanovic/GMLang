@@ -1,3 +1,7 @@
+import pytest
+from textx import TextXSyntaxError
+
+
 def test_simple_node_creation(metamodel):
     try:
         model = metamodel.model_from_str(
@@ -24,13 +28,8 @@ def test_simple_node_creation(metamodel):
 def test_creation_with_invalid_names(metamodel):
     invalid_names = ["1Node", "Node-Name", "Node Name", "Node@123"]
     for name in invalid_names:
-        try:
-            metamodel.model_from_str(f"node {name}")
-            raise AssertionError(
-                    f"Model parsing should have failed for invalid node name: {name}"
-                )
-        except Exception:
-            pass  # Expected exception for invalid names
+        with pytest.raises(TextXSyntaxError):
+            metamodel.model_from_str(f"node {name}\n")
 
 
 def test_creation_with_edge_case_names(metamodel):

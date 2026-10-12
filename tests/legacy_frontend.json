@@ -1,0 +1,3637 @@
+[
+  {
+    "source": "",
+    "model": {
+      "class": "File",
+      "commands": []
+    }
+  },
+  {
+    "source": " \n\t",
+    "model": {
+      "class": "File",
+      "commands": []
+    }
+  },
+  {
+    "source": "\n\n",
+    "model": {
+      "class": "File",
+      "commands": []
+    }
+  },
+  {
+    "source": "node A",
+    "error": "syntax"
+  },
+  {
+    "source": "node A\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A\r\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node\nA\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node A [x:\n1]\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node A\ntrailing",
+    "error": "syntax"
+  },
+  {
+    "source": "nodeA\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "graphcmd\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [],
+          "kwargs": {},
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha -- Bravo\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A,A,B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A",
+              "B"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node Éclair, _A, 一\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "_A",
+              "Éclair",
+              "一"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A []\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:1,x:2]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "int",
+              "value": 2
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph othercmd as\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "othercmd",
+          "args": [
+            "as"
+          ],
+          "kwargs": {},
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd -x 0 -y \"\" -z -x 2 -x\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [],
+          "kwargs": {
+            "x": {
+              "type": "int",
+              "value": 2
+            },
+            "y": ""
+          },
+          "flags": {
+            "set": [
+              "x",
+              "z"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd -x -1\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [],
+          "kwargs": {
+            "x": {
+              "type": "int",
+              "value": -1
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd -x 1 extra\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node graph\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node node\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node let\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node be\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node as\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node graphX\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "graphX"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node nodeX\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "nodeX"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node letX\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "letX"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node beX\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "beX"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node asX\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "asX"
+            ]
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node 1Node\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node Node-Name\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node Node Name\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node Node@123\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node A [x:0]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "int",
+              "value": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd 0 -x 0\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "int",
+              "value": 0
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "int",
+              "value": 0
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:1]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "int",
+              "value": 1
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd 1 -x 1\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "int",
+              "value": 1
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "int",
+              "value": 1
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:-1]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "int",
+              "value": -1
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd -1 -x -1\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "int",
+              "value": -1
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "int",
+              "value": -1
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:+2]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "int",
+              "value": 2
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd +2 -x +2\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "int",
+              "value": 2
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "int",
+              "value": 2
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:01]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "int",
+              "value": 1
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd 01 -x 01\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "int",
+              "value": 1
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "int",
+              "value": 1
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:1.]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "float",
+              "value": 1.0
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd 1. -x 1.\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "float",
+              "value": 1.0
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "float",
+              "value": 1.0
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:1.2]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "float",
+              "value": 1.2
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd 1.2 -x 1.2\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "float",
+              "value": 1.2
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "float",
+              "value": 1.2
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:.5]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "float",
+              "value": 0.5
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd .5 -x .5\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "float",
+              "value": 0.5
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "float",
+              "value": 0.5
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:-.5]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "float",
+              "value": -0.5
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd -.5 -x -.5\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "float",
+              "value": -0.5
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "float",
+              "value": -0.5
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:1e2]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "float",
+              "value": 100.0
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd 1e2 -x 1e2\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "float",
+              "value": 100.0
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "float",
+              "value": 100.0
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:+2E-3]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "float",
+              "value": 0.002
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd +2E-3 -x +2E-3\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "float",
+              "value": 0.002
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "float",
+              "value": 0.002
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:1.e3]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": {
+              "type": "float",
+              "value": 1000.0
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "graph cmd 1.e3 -x 1.e3\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "GraphContextCommand",
+          "subcommand": "cmd",
+          "args": [
+            {
+              "type": "float",
+              "value": 1000.0
+            }
+          ],
+          "kwargs": {
+            "x": {
+              "type": "float",
+              "value": 1000.0
+            }
+          },
+          "flags": {
+            "set": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:1e]\n",
+    "error": "syntax"
+  },
+  {
+    "source": "graph cmd 1e -x 1e\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node A [x:1.2.3]\n",
+    "error": "syntax"
+  },
+  {
+    "source": "graph cmd 1.2.3 -x 1.2.3\n",
+    "error": "syntax"
+  },
+  {
+    "source": "node A [x:\"\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": ""
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:'single']\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": "single"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:\"café 一\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": "café 一"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:\"a\\nb\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": "a\\nb"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:\"a\\tb\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": "a\\tb"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:\"a\\\\b\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": "a\\\\b"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:\"a\\\"b\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": "a\"b"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:'a\\'b']\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": "a'b"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:\"a\\qb\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": "a\\qb"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A [x:\"two\nlines\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "NodeCreationCommand",
+          "nodes": {
+            "set": [
+              "A"
+            ]
+          },
+          "attributes": {
+            "x": "two\nlines"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A -- B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "A -- B tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A -- B [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha -- Bravo tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha -- Bravo [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -- node B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "--",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -- node B tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "--",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -- node B [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {
+              "kind": "x"
+            }
+          },
+          "operator": "--",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -- (node B)\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "--",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -- (node B) tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "--",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -- (node B) [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "--",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} -- {C,D}\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} -- {C,D} tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} -- {C,D} [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A -> B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "A -> B tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A -> B [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha -> Bravo\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha -> Bravo tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha -> Bravo [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -> node B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "->",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -> node B tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "->",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -> node B [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {
+              "kind": "x"
+            }
+          },
+          "operator": "->",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -> (node B)\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "->",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -> (node B) tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "->",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A -> (node B) [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "->",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} -> {C,D}\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} -> {C,D} tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} -> {C,D} [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A <- B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "A <- B tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A <- B [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha <- Bravo\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha <- Bravo tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha <- Bravo [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <- node B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<-",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <- node B tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<-",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <- node B [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {
+              "kind": "x"
+            }
+          },
+          "operator": "<-",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <- (node B)\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<-",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <- (node B) tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<-",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <- (node B) [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<-",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} <- {C,D}\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} <- {C,D} tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} <- {C,D} [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A <> B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "A <> B tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A <> B [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha <> Bravo\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha <> Bravo tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha <> Bravo [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <> node B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<>",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <> node B tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<>",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <> node B [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {
+              "kind": "x"
+            }
+          },
+          "operator": "<>",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <> (node B)\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<>",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <> (node B) tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<>",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A <> (node B) [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "<>",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} <> {C,D}\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} <> {C,D} tag\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "{A,B} <> {C,D} [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "C",
+                "D"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha < tag > Bravo\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "InfixConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "<>",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha < tag - Bravo\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "InfixConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "<-",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha - tag > Bravo\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "InfixConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "->",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "Alpha - tag - Bravo\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "InfixConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "Bravo"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {
+            "tag": "tag"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "(node A -- node B) [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          },
+          "second": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            },
+            "attributes": {}
+          },
+          "operator": "--",
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "*-> node B [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "HyperEdgeChain",
+          "inners": [
+            {
+              "class": "NodeCreationCommand",
+              "nodes": {
+                "set": [
+                  "B"
+                ]
+              },
+              "attributes": {
+                "kind": "x"
+              }
+            }
+          ],
+          "contents": {
+            "undirected": {
+              "set": []
+            },
+            "target": {
+              "set": [
+                "B"
+              ]
+            },
+            "source": {
+              "set": []
+            }
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "*-> (node B) [kind:\"x\"]\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "HyperEdgeChain",
+          "inners": [
+            {
+              "class": "NodeCreationCommand",
+              "nodes": {
+                "set": [
+                  "B"
+                ]
+              },
+              "attributes": {}
+            }
+          ],
+          "contents": {
+            "undirected": {
+              "set": []
+            },
+            "target": {
+              "set": [
+                "B"
+              ]
+            },
+            "source": {
+              "set": []
+            }
+          },
+          "attributes": {
+            "kind": "x"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "*-- A *-- {B,C}\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "HyperEdgeChain",
+          "inners": [
+            {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "A"
+                ]
+              }
+            },
+            {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "B",
+                  "C"
+                ]
+              }
+            }
+          ],
+          "contents": {
+            "undirected": {
+              "set": [
+                "A",
+                "B",
+                "C"
+              ]
+            },
+            "target": {
+              "set": []
+            },
+            "source": {
+              "set": []
+            }
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "*<- A *-> B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "HyperEdgeChain",
+          "inners": [
+            {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "A"
+                ]
+              }
+            },
+            {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "B"
+                ]
+              }
+            }
+          ],
+          "contents": {
+            "undirected": {
+              "set": []
+            },
+            "target": {
+              "set": [
+                "B"
+              ]
+            },
+            "source": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "<*> Alpha\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "HyperEdgeChain",
+          "inners": [
+            {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "Alpha"
+                ]
+              }
+            }
+          ],
+          "contents": {
+            "undirected": {
+              "set": []
+            },
+            "target": {
+              "set": [
+                "Alpha"
+              ]
+            },
+            "source": {
+              "set": [
+                "Alpha"
+              ]
+            }
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "*-- A *-> B\n",
+    "error": "semantic",
+    "message": "Hyperedge cannot have both source nodes and target/undirected nodes."
+  },
+  {
+    "source": "*-> A *-> A\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "HyperEdgeChain",
+          "inners": [
+            {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "A"
+                ]
+              }
+            },
+            {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "A"
+                ]
+              }
+            }
+          ],
+          "contents": {
+            "undirected": {
+              "set": []
+            },
+            "target": {
+              "set": [
+                "A"
+              ]
+            },
+            "source": {
+              "set": []
+            }
+          },
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  {
+    "source": "A -- B as Alias\n",
+    "error": "syntax"
+  },
+  {
+    "source": "A -- B as\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "StandardConnectionCommand",
+          "first": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            }
+          },
+          "second": {
+            "class": "NodeSet",
+            "nodes": {
+              "set": [
+                "B"
+              ]
+            }
+          },
+          "operator": "--",
+          "attributes": {
+            "tag": "as"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A -- B tag as Alias\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "AsStatement",
+          "name": "Alias",
+          "expr": {
+            "class": "StandardConnectionCommand",
+            "first": {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "A"
+                ]
+              }
+            },
+            "second": {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "B"
+                ]
+              }
+            },
+            "operator": "--",
+            "attributes": {
+              "tag": "tag"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "A -- B as as Alias\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "AsStatement",
+          "name": "Alias",
+          "expr": {
+            "class": "StandardConnectionCommand",
+            "first": {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "A"
+                ]
+              }
+            },
+            "second": {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "B"
+                ]
+              }
+            },
+            "operator": "--",
+            "attributes": {
+              "tag": "as"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "node A as Alias\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "AsStatement",
+          "name": "Alias",
+          "expr": {
+            "class": "NodeCreationCommand",
+            "nodes": {
+              "set": [
+                "A"
+              ]
+            },
+            "attributes": {}
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "let Alias be A -- B\n",
+    "model": {
+      "class": "File",
+      "commands": [
+        {
+          "class": "LetStatement",
+          "name": "Alias",
+          "expr": {
+            "class": "StandardConnectionCommand",
+            "first": {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "A"
+                ]
+              }
+            },
+            "second": {
+              "class": "NodeSet",
+              "nodes": {
+                "set": [
+                  "B"
+                ]
+              }
+            },
+            "operator": "--",
+            "attributes": {}
+          }
+        }
+      ]
+    }
+  },
+  {
+    "source": "(A -- B) as Alias\n",
+    "error": "syntax"
+  },
+  {
+    "source": "(A -- B tag) as Alias\n",
+    "error": "syntax"
+  }
+]
