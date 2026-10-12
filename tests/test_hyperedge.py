@@ -1,4 +1,4 @@
-from textx.exceptions import TextXSemanticError
+from gmlang.errors import GMLangSemanticError
 
 
 def assert_hyperedge_chain(
@@ -106,5 +106,5 @@ def test_mixed(metamodel):
             )
     except Exception as e:
         assert isinstance(
-            e, TextXSemanticError
+            e, GMLangSemanticError
         ), f"Model parsing failed with exception: {e}"

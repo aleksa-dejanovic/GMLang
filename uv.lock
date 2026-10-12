@@ -3,15 +3,6 @@ revision = 3
 requires-python = ">=3.13"
 
 [[package]]
-name = "arpeggio"
-version = "2.0.3"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/3b/58/ba011f3cf8291804ce80f9d81289ac15f0319a27f9d7e3c124aa5e4981cc/Arpeggio-2.0.3.tar.gz", hash = "sha256:9e85ad35cfc6c938676817c7ae9a1000a7c72a34c71db0c687136c460d12b85e", size = 766566, upload-time = "2025-09-12T12:45:20.594Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/84/4d/53b8186b41842f7a5e971b1d1c28e678364dcf841e4170f5d14d38ac1e2a/Arpeggio-2.0.3-py2.py3-none-any.whl", hash = "sha256:9374d9c531b62018b787635f37fd81c9a6ee69ef2d28c5db3cd18791b1f7db2f", size = 54656, upload-time = "2025-09-12T12:45:17.971Z" },
-]
-
-[[package]]
 name = "asttokens"
 version = "3.0.1"
 source = { registry = "https://pypi.org/simple" }
@@ -125,7 +116,7 @@ name = "gmlang"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "textx" },
+    { name = "parglare" },
 ]
 
 [package.dev-dependencies]
@@ -141,7 +132,6 @@ dev = [
     { name = "pytest" },
     { name = "ruff" },
     { name = "syrupy" },
-    { name = "textx", extra = ["cli"] },
 ]
 test = [
     { name = "coverage" },
@@ -152,7 +142,7 @@ test = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "textx" }]
+requires-dist = [{ name = "parglare", specifier = "==0.22.0" }]
 
 [package.metadata.requires-dev]
 dbg = [
@@ -167,7 +157,6 @@ dev = [
     { name = "pytest", specifier = ">=9.0.1" },
     { name = "ruff", specifier = ">=0.14.8" },
     { name = "syrupy", specifier = ">=5.0.0" },
-    { name = "textx", extras = ["cli"], specifier = ">=4.2.3" },
 ]
 test = [
     { name = "coverage", specifier = ">=7.12.0" },
@@ -327,6 +316,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz", hash = "sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f", size = 165727, upload-time = "2025-04-19T11:48:59.673Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/20/12/38679034af332785aac8774540895e234f4d07f7545804097de4b666afd8/packaging-25.0-py3-none-any.whl", hash = "sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484", size = 66469, upload-time = "2025-04-19T11:48:57.875Z" },
+]
+
+[[package]]
+name = "parglare"
+version = "0.22.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/71/ef/135463a6cef784f2d4e7f9e06fa2d808741b147d47b2ac3e869faf9dc6f3/parglare-0.22.0.tar.gz", hash = "sha256:b0b12c35525b93743e526dc265bb58812e30fcf546975a490cc95352ba5cb22e", size = 1713388, upload-time = "2026-09-01T15:40:48.113Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/87/76/9a1f7c66051f92db411b2e759a0895c0b77937abf0cc3a6ef8a7e39eb00c/parglare-0.22.0-py3-none-any.whl", hash = "sha256:535cccca425c252fd3191103235e483d3f7ea984ea9081a38825578b6de7cbb2", size = 63416, upload-time = "2026-09-01T15:40:45.358Z" },
 ]
 
 [[package]]
@@ -490,23 +491,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e7/39/17dde9f0c76cc5abcdeef1b2243791bb850d498f784147b8e460dd23abe8/syrupy-5.5.3.tar.gz", hash = "sha256:fa21e4ae77c89ec5abfca513338d8a7eb916da6618ca0f8db301476e0768e57a", size = 91614, upload-time = "2026-07-11T15:54:31.46Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ae/f9/617a194c1a4203279998e1859426cf2635042533a99a93d63d3ee1fb967e/syrupy-5.5.3-py3-none-any.whl", hash = "sha256:0b260a0c9dad55e1fb83818973dc36fbc1aea3fd5381592f442a986686c4171a", size = 54959, upload-time = "2026-07-11T15:54:29.836Z" },
-]
-
-[[package]]
-name = "textx"
-version = "4.2.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "arpeggio" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/a7/23/f8a1f8ea7d5e96a5b89a3d5da823f1b5aaa9e94f1995468a71a9cb146583/textx-4.2.3.tar.gz", hash = "sha256:5c503fe335b24bc113c21cf20bfec9a174680cf95bb651dea8f90c27d305d4c8", size = 2136790, upload-time = "2025-10-09T11:53:49.415Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/5e/f4/e748c6781318aa9fef477c66d4dbd378b28a0e5ea73320cdcf630f755fe5/textx-4.2.3-py3-none-any.whl", hash = "sha256:dc533d34809408fd7152f499fc97609ba7615f61a9e0ebcc76016a0929be5979", size = 67728, upload-time = "2025-10-09T11:53:46.816Z" },
-]
-
-[package.optional-dependencies]
-cli = [
-    { name = "click" },
 ]
 
 [[package]]

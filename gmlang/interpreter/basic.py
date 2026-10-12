@@ -1,9 +1,8 @@
 import contextlib
 from typing import Literal, overload
 
-from textx.exceptions import TextXSemanticError
-
 from gmlang.common.types import Storable
+from gmlang.errors import GMLangSemanticError
 from gmlang.graph.graph import Edge, Graph, Hyperedge, Node
 
 
@@ -19,7 +18,7 @@ class BasicInterpreter:
                 print(f"Setting variable name {name} to value {value}")
             self._variables[name] = value
         else:
-            raise TextXSemanticError(f"Overwriting an existing alias {name}")
+            raise GMLangSemanticError(f"Overwriting an existing alias {name}")
 
     @overload
     def get_variable(self, name: str, forgive: Literal[False] = False) -> Storable: ...
@@ -35,12 +34,12 @@ class BasicInterpreter:
         except KeyError as e:
             if forgive:
                 return None
-            raise TextXSemanticError(f"Using a non-declared alias {name}") from e
+            raise GMLangSemanticError(f"Using a non-declared alias {name}") from e
 
     def _get_node(self, name: str) -> Node:
         value = self.get_variable(name)
         if not isinstance(value, Node):
-            raise TextXSemanticError(f"Alias {name} does not refer to a node")
+            raise GMLangSemanticError(f"Alias {name} does not refer to a node")
         return value
 
     def interpret(self, commands: list) -> None:

@@ -1,32 +1,25 @@
-import os
+"""GMLang graph definition and manipulation language."""
 
-from textx import language, metamodel_from_file
-
-from gmlang import obj_processors
+from gmlang.errors import (
+    GMLangAmbiguityError,
+    GMLangError,
+    GMLangSemanticError,
+    GMLangSyntaxError,
+)
+from gmlang.parser import GMLangParser, create_parser
 
 __version__ = "0.1.0.dev"
+__all__ = [
+    "GMLangParser",
+    "create_parser",
+    "gmlang_language",
+    "GMLangError",
+    "GMLangSyntaxError",
+    "GMLangSemanticError",
+    "GMLangAmbiguityError",
+]
 
 
-@language("gmlang", "*.gml")
 def gmlang_language():
-    "gmlang language"
-    current_dir = os.path.dirname(__file__)
-    mm = metamodel_from_file(os.path.join(current_dir, "grammar", "grammar.tx"))
-
-    # Here if necessary register object processors or scope providers
-    # http://textx.github.io/textX/stable/metamodel/#object-processors
-    # http://textx.github.io/textX/stable/scoping/
-
-    mm.register_obj_processors(
-        {
-            "StandardConnectionCommand": obj_processors.process_standard_connection,
-            "InfixConnectionCommand": obj_processors.process_infix_connection,
-            "GraphContextCommand": obj_processors.process_kwargs,
-            "NodeCreationCommand": obj_processors.process_attributes,
-            "NodeSet": obj_processors.process_node_set,
-            "NodeList": obj_processors.process_nodes,
-            "HyperEdgeChain": obj_processors.process_hyperedge_chain,
-        }
-    )
-
-    return mm
+    """Compatibility factory; use create_parser() for new callers."""
+    return create_parser()

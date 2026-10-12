@@ -1,7 +1,6 @@
 import json
 
-from textx import TextXSemanticError
-
+from gmlang.errors import GMLangSemanticError
 from gmlang.graph.json_encoder import GraphJSONEncoder
 from gmlang.interpreter.basic import BasicInterpreter
 
@@ -94,7 +93,7 @@ def test_hyperedge_non_declared(metamodel):
     interpreter = BasicInterpreter()
     try:
         interpreter.interpret(model.commands)
-    except TextXSemanticError:
+    except GMLangSemanticError:
         return
 
     raise AssertionError("Interpreting should have failed due to undeclared aliases")
@@ -112,7 +111,7 @@ def test_duplicate_alias(metamodel):
     interpreter = BasicInterpreter()
     try:
         interpreter.interpret(model.commands)
-    except TextXSemanticError:
+    except GMLangSemanticError:
         return
 
     raise AssertionError("Interpreting should have failed due to duplicate aliases")

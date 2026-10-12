@@ -1,5 +1,6 @@
 import pytest
-import textx
+
+from gmlang import create_parser
 
 
 def pytest_addoption(parser):
@@ -25,7 +26,7 @@ def setup_session():
 def get_metamodel():
     """Helper to get the metamodel for tests"""
 
-    return textx.metamodel_for_language("gmlang")
+    return create_parser()
 
 
 @pytest.fixture(scope="session")

@@ -1,0 +1,45 @@
+File: commands=Line*;
+Line: Command NL | NL;
+Command: AsStatement | LetStatement | GraphDefinitionCommand | GraphContextCommand;
+Expression: GraphDefinitionCommand;
+LetStatement: LET name=Identifier BE expr=Expression;
+AsStatement: expr=NodeCreationCommand AS name=Identifier
+           | '(' expr=ConnectionCommand ')' AS name=Identifier;
+GraphDefinitionCommand: ConnectionCommand | NodeCreationCommand;
+ConnectionCommand: StandardConnectionCommand | InfixConnectionCommand | HyperEdgeChain;
+Nodes: NodeCreationCommand | '(' NodeCreationCommand ')' | NodeSet;
+NodeSet: names=Identifier | '{' names=Identifier+[COMMA] '}';
+NodeList: Identifier+[COMMA];
+NodeCreationCommand: NODE names=NodeList attr_list=AttributeList?;
+StandardConnectionCommand: scc=SCCNoAttributes suffix=ConnectionSuffix?
+                        | '(' scc=SCCNoAttributes ')' suffix=ConnectionSuffix?;
+SCCNoAttributes: first=Nodes operator=ConnectionOperator second=Nodes;
+ConnectionSuffix: attributes=AttributeList | tag=ID;
+InfixConnectionCommand: first=Nodes l_opr=LConnectionOperator tag=ID
+                       r_opr=RConnectionOperator second=Nodes;
+AttributeList: '[' attributes=Attribute*[COMMA] ']';
+Attribute: key=AttributeKey ':' value=AttributeValue;
+AttributeKey: ID | STRING;
+AttributeValue: STRING | NUMBER;
+HyperEdgeChain: edges=HyperEdge+ attr_list=AttributeList?;
+HyperEdge: operator=HyperEdgeOperator inner=Nodes;
+GraphContextCommand: GRAPH subcommand=ID args=Parameter* options=KWParameter*;
+Parameter: STRING | NUMBER | ID;
+KWParameter: KWPREFIX key=ID value=Parameter?;
+terminals
+NL: /\n/;
+COMMA: ',';
+GRAPH: 'graph';
+NODE: 'node';
+LET: /\blet\b/;
+BE: /\bbe\b/;
+AS: /\bas\b/;
+ID: /[^\W\d]\w*\b/;
+Identifier: /(?!(?:graph|node|let|be|as)\b)[^\W\d]\w*\b/;
+ConnectionOperator: /->|--|<-|<>/;
+LConnectionOperator: /[<-]/;
+RConnectionOperator: /[>-]/;
+HyperEdgeOperator: /\*--|\*->|\*<-|<\*>/;
+KWPREFIX: /--?/;
+STRING: ;
+NUMBER: ;

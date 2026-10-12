@@ -1,7 +1,7 @@
-from textx.metamodel import TextXMetaModel
+from gmlang.parser import GMLangParser
 
 
-def test_let_nodes(metamodel: TextXMetaModel):
+def test_let_nodes(metamodel: GMLangParser):
     model = metamodel.model_from_str(
         """
         let SomeNode be node A
@@ -24,7 +24,7 @@ def test_let_nodes(metamodel: TextXMetaModel):
 
 
 
-def test_let_edges(metamodel: TextXMetaModel):
+def test_let_edges(metamodel: GMLangParser):
     model = metamodel.model_from_str(
             """
             let edge1 be A -- B

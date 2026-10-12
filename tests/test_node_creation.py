@@ -1,5 +1,6 @@
 import pytest
-from textx import TextXSyntaxError
+
+from gmlang.errors import GMLangSyntaxError
 
 
 def test_simple_node_creation(metamodel):
@@ -28,7 +29,7 @@ def test_simple_node_creation(metamodel):
 def test_creation_with_invalid_names(metamodel):
     invalid_names = ["1Node", "Node-Name", "Node Name", "Node@123"]
     for name in invalid_names:
-        with pytest.raises(TextXSyntaxError):
+        with pytest.raises(GMLangSyntaxError):
             metamodel.model_from_str(f"node {name}\n")
 
 
